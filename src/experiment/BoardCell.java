@@ -4,7 +4,13 @@ public class BoardCell {
 	public int row;
 	public int column;
 	
-	//add consturctor
+	public BoardCell(int row, int column) {
+		super();
+		this.row = row;
+		this.column = column;
+	}
+	
+	
 	
 
 }
