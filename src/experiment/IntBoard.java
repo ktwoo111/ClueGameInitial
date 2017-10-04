@@ -77,6 +77,7 @@ public class IntBoard {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		findAllTargets(startCell, pathLength);
+		targets.remove(startCell);
 	}
 
 	public void findAllTargets(BoardCell startCell, int pathLength){
@@ -96,4 +97,18 @@ public class IntBoard {
 		}
 
 	}
+	
+	
+	public static void main(String args[]) {
+		IntBoard board = new IntBoard();
+		BoardCell cell = board.getCell(2, 1);
+		board.calcTargets(cell, 6);
+		Set<BoardCell> targets = board.getTargets();
+		for(BoardCell i: targets) {
+			System.out.println(i);
+			
+		}		
+	}
+	
+	
 }

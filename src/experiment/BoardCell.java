@@ -9,6 +9,12 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardCell [row=" + row + ", column=" + column + "]";
+	}
+	
 	
 	
 	
