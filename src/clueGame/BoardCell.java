@@ -31,6 +31,16 @@ public class BoardCell {
 		return true;
 		
 	}
+
+	public DoorDirection getDoorDirection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public char getInitial() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

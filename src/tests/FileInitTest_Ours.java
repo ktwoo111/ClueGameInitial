@@ -1,5 +1,6 @@
 package tests;
 
+import clueGame.Board;
 import static org.junit.Assert.*;
 
 import java.util.Map;
@@ -10,10 +11,9 @@ import org.junit.Test;
 import clueGame.BoardCell;
 
 public class FileInitTest_Ours {
-
 	public void testRooms() {
 		// Get the map of initial => room 
-		Map<Character, String> legend = board.getLegend();
+		Map<Character, String> legend = getInstance().getLegend();
 		// Ensure we read the correct number of rooms
 		assertEquals(LEGEND_SIZE, legend.size());
 		// To ensure data is correctly loaded, test retrieving a few rooms 

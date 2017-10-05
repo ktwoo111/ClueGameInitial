@@ -54,6 +54,18 @@ public class Board {
 	public HashMap<Character, String> getLegend() {
 		return legend;
 	}
+	public BoardCell getCellAt(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public int getNumRows() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int getNumColumns() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	
