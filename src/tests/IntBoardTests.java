@@ -175,7 +175,7 @@ public class IntBoardTests {
 	public void testTargets0_6()
 	{
 		BoardCell cell = board.getCell(2, 1);
-		board.calcTargets(cell, 5);
+		board.calcTargets(cell, 6);
 		Set<BoardCell> targets = board.getTargets();
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCell(0, 1)));
