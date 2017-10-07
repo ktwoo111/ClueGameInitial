@@ -34,8 +34,9 @@ public class Board {
 	}
 	/**
 	 * initialize method to create the board and set up values
+	 * @throws BadConfigFormatException 
 	 */
-	public void initialize(){
+	public void initialize() {
 		
 		legend = new HashMap<Character,String>();
 		try {
@@ -53,16 +54,26 @@ public class Board {
 			e.printStackTrace();
 		}		
 		board = new BoardCell[numRows][numColumns];
-		System.out.println(numColumns );
-		loadRoomConfig();
-		loadBoardConfig();
+		try {
+			loadRoomConfig();
+		} catch (BadConfigFormatException e1) {
+			System.out.println(e1);
+			System.out.println(e1.getMessage());
+		}
+		try {
+			loadBoardConfig();
+		} catch (BadConfigFormatException e) {
+			System.out.println(e);
+			System.out.println(e.getMessage());
+		}
 		//System.out.println("DONE3");
 		
 	}
 	/**
 	 * Loads the rooms for the board
+	 * @throws BadConfigFormatException 
 	 */
-	public void loadRoomConfig(){
+	public void loadRoomConfig() throws BadConfigFormatException{
 		try {
 			FileReader reader = new FileReader(roomConfigFile);
 			Scanner in = new Scanner(reader);
@@ -73,8 +84,12 @@ public class Board {
 					break;
 				}
 				String[] parts = input.split(",");
-				//System.out.println(parts[0].charAt(0));
-				//System.out.println(parts[1]);				
+				if (parts.length != 3) {
+					throw new BadConfigFormatException();
+				}
+				if (!parts[2].trim().equalsIgnoreCase("Card") && !parts[2].trim().equalsIgnoreCase("Other")){
+					throw new BadConfigFormatException(parts[2].trim());
+				}
 				legend.put(parts[0].charAt(0), parts[1].trim());
 			}		
 		} catch (FileNotFoundException e) {
@@ -87,19 +102,29 @@ public class Board {
 	}
 	/**
 	 * Loads the configuration of the board
+	 * @throws BadConfigFormatException 
 	 */
-	public void loadBoardConfig(){
+	public void loadBoardConfig() throws BadConfigFormatException{
 		try {
 			FileReader reader = new FileReader(boardConfigFile);
 			Scanner in = new Scanner(reader);
 			String input = "";
 			int i = 0; // is the row
 			while(in.hasNextLine()){
+				if (i >= numRows) {
+					throw new BadConfigFormatException();
+				}
 				input = in.nextLine();
 				if (input == ""){
 					break;
 				}
 				String[] parts = input.split(",");
+				if (parts.length != numColumns) {
+					throw new BadConfigFormatException();
+				}
+				if (!legend.containsKey(parts[0].charAt(0))){
+					throw new BadConfigFormatException(parts[0]);
+				}
 				for(int j = 0; j < numColumns; j++){ // j is the column
 					board[i][j] = new BoardCell(i,j,parts[j]);
 				}
@@ -194,14 +219,6 @@ public class Board {
 		// TODO Auto-generated method stub
 		return numColumns;
 	}
-	
-	public static void main(String args[]){
-		Board board = Board.getInstance();
-		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
-		board.initialize();
-		System.out.println("DONE OVER ALL");
-	}
-
 
 
 

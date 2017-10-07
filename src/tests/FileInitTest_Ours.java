@@ -1,3 +1,6 @@
+/**
+ * @author Taewoo Kim and John Baker
+ */
 package tests;
 
 import clueGame.Board;
