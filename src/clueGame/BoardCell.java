@@ -4,7 +4,7 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial;
-	private DoorDirection doorDirection;
+	public enum DoorDirection {};
 	
 	
 	public BoardCell(int row, int column) {
@@ -19,16 +19,16 @@ public class BoardCell {
 	}
 	
 	public boolean isWalkway(){
-		return true;
+			return null;
 		
 	}
 	
 	public boolean isRoom(){
-		return true;	
+		return null;	
 	}
 	
 	public boolean isDoorway(){
-		return true;
+		return null;
 		
 	}
 

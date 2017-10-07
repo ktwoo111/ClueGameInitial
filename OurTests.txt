@@ -1,0 +1,11 @@
+testRooms:
+Chose the first few rooms in the text file, and our last element was also the walkway.
+
+FourDoorDirections:
+Library has a door that opens right
+Master Bedroom has a door that opens down.
+Library has a door that opens left.
+Guest Bedroom has a door that opens up.
+
+testRoomInitials:
+we just chose rooms that are scattered throughout the map evenly. We tested to see if the initials corresponded to the initials we chose for that cell.

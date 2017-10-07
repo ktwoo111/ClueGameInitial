@@ -1,0 +1,17 @@
+D, Dine Room, Card
+G, Guest Bedroom, Card
+M, Master Bedroom, Card
+B, Bathroom, Card
+L, Library, Card
+C, ComputerGame Room, Card
+K, Kitchen, Card
+A, Artroom, Card
+O, Office, Card
+X, Closet, other
+W, Walkway, other
+
+
+
+
+
+
