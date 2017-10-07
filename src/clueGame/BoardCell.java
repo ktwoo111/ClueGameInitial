@@ -4,13 +4,41 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial;
-	public enum DoorDirection {};
+	private DoorDirection doorDirection;
 	
 	
-	public BoardCell(int row, int column) {
+	public BoardCell(int row, int column, String letters) {
 		super();
 		this.row = row;
 		this.column = column;
+		
+		if(letters.length() > 1){
+			this.initial = letters.charAt(0);
+			if(letters.charAt(1) == 'D'){
+				doorDirection = DoorDirection.DOWN;
+				
+			}
+			else if(letters.charAt(1) == 'U'){
+				doorDirection = DoorDirection.UP;
+				
+			}
+			else if(letters.charAt(1) == 'L'){
+				doorDirection = DoorDirection.LEFT;
+				
+			}
+			else if(letters.charAt(1) == 'R'){
+				doorDirection = DoorDirection.RIGHT;			
+			}
+			else {
+				doorDirection = DoorDirection.NONE;
+			}
+			
+		}
+		else {
+			this.initial = letters.charAt(0);
+			doorDirection = DoorDirection.NONE;
+		}
+		
 	}
 
 	@Override
@@ -19,27 +47,37 @@ public class BoardCell {
 	}
 	
 	public boolean isWalkway(){
-			return null;
+		if(initial == 'W'){
+			return true;
+			
+		}	
+		else {return false;}
 		
 	}
 	
 	public boolean isRoom(){
-		return null;	
+		if(initial != 'W'){
+			return true;
+			
+		}	
+		else {return false;}	
 	}
 	
 	public boolean isDoorway(){
-		return null;
+		if(doorDirection != DoorDirection.NONE){
+			return true;
+			
+		}	
+		else {return false;}	
 		
 	}
 
 	public DoorDirection getDoorDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		return doorDirection;
 	}
 
 	public char getInitial() {
-		// TODO Auto-generated method stub
-		return null;
+		return initial;
 	}
 	
 	

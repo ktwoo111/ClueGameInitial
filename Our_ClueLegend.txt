@@ -9,9 +9,3 @@ A, Artroom, Card
 O, Office, Card
 X, Closet, other
 W, Walkway, other
-
-
-
-
-
-
