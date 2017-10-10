@@ -70,6 +70,8 @@ public class Board {
 		}
 		//System.out.println("DONE3");
 		
+		calcAdjacencies();
+		
 	}
 	/**
 	 * Loads the rooms for the board
