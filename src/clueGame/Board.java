@@ -22,6 +22,7 @@ public class Board {
 	private HashMap<BoardCell,Set<BoardCell>> adjMatrix;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private HashSet<BoardCell> targets;
 
 
 	// variable used for singleton pattern
@@ -32,6 +33,7 @@ public class Board {
 	public static Board getInstance() {
 		return theInstance;
 	}
+	
 	/**
 	 * initialize method to create the board and set up values
 	 * @throws BadConfigFormatException 
@@ -168,11 +170,13 @@ public class Board {
 	 * @param pathLength Number of squares left to move
 	 */
 	
-	public void calcTargets(BoardCell startCell, int pathLength){
+	public void calcTargets(int i, int j, int pathLength){
+		targets.clear();
 		HashSet<BoardCell> visited = new HashSet<BoardCell>();
-		HashSet<BoardCell> targets = new HashSet<BoardCell>();
-		findAllTargets(startCell, pathLength, visited, targets);
-		targets.remove(startCell);
+		targets = new HashSet<BoardCell>();
+		findAllTargets(board[i][j], pathLength, visited, targets);
+		targets.remove(board[i][j]);
+		
 	}
 
 	public void findAllTargets(BoardCell startCell, int pathLength, HashSet<BoardCell> visited, HashSet<BoardCell> targets){
@@ -191,6 +195,11 @@ public class Board {
 			visited.remove(cell);
 		}
 
+	}
+	
+	public Set<BoardCell> getTargets() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	/**
 	 * loads the information from the configuration files
@@ -219,7 +228,11 @@ public class Board {
 		// TODO Auto-generated method stub
 		return numColumns;
 	}
-
+	public Set<BoardCell> getAdjList(int i, int j) {
+		// TODO Auto-generated method stub
+		//return adjMatrix.get(board[i][j]);
+		return null;
+	}
 
 
 }
