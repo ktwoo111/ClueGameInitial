@@ -99,6 +99,7 @@ public class IntBoard {
 	}
 	
 	
+	/*
 	public static void main(String args[]) {
 		IntBoard board = new IntBoard();
 		BoardCell cell = board.getCell(2, 1);
@@ -109,6 +110,7 @@ public class IntBoard {
 			
 		}		
 	}
+	*/
 	
 	
 }

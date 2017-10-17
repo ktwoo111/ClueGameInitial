@@ -70,7 +70,7 @@ public class Board {
 		}
 		//System.out.println("DONE3");
 		
-		calcAdjacencies();
+		//calcAdjacencies();
 		
 	}
 	/**
