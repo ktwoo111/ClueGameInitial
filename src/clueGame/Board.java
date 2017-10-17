@@ -33,13 +33,13 @@ public class Board {
 	public static Board getInstance() {
 		return theInstance;
 	}
-	
+
 	/**
 	 * initialize method to create the board and set up values
 	 * @throws BadConfigFormatException 
 	 */
 	public void initialize() {
-		
+
 		legend = new HashMap<Character,String>();
 		try {
 			FileReader reader = new FileReader(boardConfigFile);
@@ -69,9 +69,9 @@ public class Board {
 			System.out.println(e.getMessage());
 		}
 		//System.out.println("DONE3");
-		
-		//calcAdjacencies();
-		
+
+		calcAdjacencies();
+
 	}
 	/**
 	 * Loads the rooms for the board
@@ -100,9 +100,9 @@ public class Board {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
+
+
 	}
 	/**
 	 * Loads the configuration of the board
@@ -144,23 +144,40 @@ public class Board {
 	 * calculates the adjacent squares for a given cell
 	 */
 	public void calcAdjacencies(){
+		adjMatrix = new HashMap<BoardCell,Set<BoardCell>>();
 		for (int i = 0; i < numRows; i++){ //row
 			for (int j = 0; j < numColumns; j++){ //column
 				adjMatrix.put(board[i][j], new HashSet<BoardCell>());
-				if(i -1 >= 0){			
-					adjMatrix.get(board[i][j]).add(board[i-1][j]);
-				}
-				if(i+1 < numRows){
-					adjMatrix.get(board[i][j]).add(board[i+1][j]);
+				if (board[i][j].isWalkway()) {
+					if(i -1 >= 0 && (board[i-1][j].getDoorDirection() == DoorDirection.DOWN || board[i-1][j].isWalkway())){			
+						adjMatrix.get(board[i][j]).add(board[i-1][j]);
+					}
+					if(i+1 < numRows && (board[i+1][j].getDoorDirection() == DoorDirection.UP || board[i+1][j].isWalkway())){
+						adjMatrix.get(board[i][j]).add(board[i+1][j]);
 
-				}
-				if(j -1 >= 0){
-					adjMatrix.get(board[i][j]).add(board[i][j-1]);
+					}
+					if(j -1 >= 0 && (board[i][j-1].getDoorDirection() == DoorDirection.RIGHT || board[i][j-1].isWalkway())){
+						adjMatrix.get(board[i][j]).add(board[i][j-1]);
 
+					}
+					if(j +1 < numColumns && (board[i][j+1].getDoorDirection() == DoorDirection.LEFT || board[i][j+1].isWalkway())){
+						adjMatrix.get(board[i][j]).add(board[i][j+1]);					
+					}
 				}
-				if(j +1 < numColumns){
-					adjMatrix.get(board[i][j]).add(board[i][j+1]);					
-				}			
+				else if (board[i][j].isDoorway()) {
+					if (board[i][j].getDoorDirection() == DoorDirection.RIGHT) {
+						adjMatrix.get(board[i][j]).add(board[i][j+1]);
+					}
+					else if (board[i][j].getDoorDirection() == DoorDirection.LEFT) {
+						adjMatrix.get(board[i][j]).add(board[i][j-1]);
+					}
+					else if (board[i][j].getDoorDirection() == DoorDirection.UP) {
+						adjMatrix.get(board[i][j]).add(board[i-1][j]);
+					}
+					else if (board[i][j].getDoorDirection() == DoorDirection.DOWN) {
+						adjMatrix.get(board[i][j]).add(board[i+1][j]);
+					}
+				}
 			}
 
 		}
@@ -171,37 +188,39 @@ public class Board {
 	 * @param startcell Current cell
 	 * @param pathLength Number of squares left to move
 	 */
-	
+
 	public void calcTargets(int i, int j, int pathLength){
-		targets.clear();
+		//targets.clear();
 		HashSet<BoardCell> visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		findAllTargets(board[i][j], pathLength, visited, targets);
 		targets.remove(board[i][j]);
-		
+
 	}
 
 	public void findAllTargets(BoardCell startCell, int pathLength, HashSet<BoardCell> visited, HashSet<BoardCell> targets){
 		visited.add(startCell);
-
 		for(BoardCell cell : adjMatrix.get(startCell)){
 			if(!visited.contains(cell)){
 				visited.add(cell);
-				if(pathLength == 1){
+				if(pathLength == 1 || cell.isDoorway()){
 					targets.add(cell);
+					
 				}
 				else {
 					findAllTargets(cell, pathLength-1, visited, targets);
 				}
+			
+				visited.remove(cell);
 			}
-			visited.remove(cell);
+			
+		
 		}
 
 	}
-	
-	public Set<BoardCell> getTargets() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public HashSet<BoardCell> getTargets() {
+		return targets;
 	}
 	/**
 	 * loads the information from the configuration files
@@ -209,8 +228,8 @@ public class Board {
 	 * @param txt tegend file
 	 */
 	public void setConfigFiles(String csv, String txt){		
-			roomConfigFile = txt;
-			boardConfigFile = csv;
+		roomConfigFile = txt;
+		boardConfigFile = csv;
 	}
 	/**
 	 * 
@@ -223,18 +242,33 @@ public class Board {
 		return board[i][j];
 	}
 	public int getNumRows() {
-		
+
 		return numRows;
 	}
 	public int getNumColumns() {
-		// TODO Auto-generated method stub
+
 		return numColumns;
 	}
 	public Set<BoardCell> getAdjList(int i, int j) {
-		// TODO Auto-generated method stub
-		//return adjMatrix.get(board[i][j]);
-		return null;
+
+		return adjMatrix.get(board[i][j]);
 	}
 
 
+	
+	public static void main(String args[]){
+		Board board = Board.getInstance();
+		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
+		board.initialize();
+		board.calcTargets(6, 12, 4);
+		System.out.println(board.getTargets().size());
+	for (BoardCell x : board.getTargets()){
+			System.out.println(x);
+		}	
+		
+		
+		
+	}
+	
+	
 }
