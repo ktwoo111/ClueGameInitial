@@ -210,7 +210,7 @@ public class Board {
 
 	}
 
-	public void findAllTargets(BoardCell startCell, int pathLength, HashSet<BoardCell> visited, HashSet<BoardCell> targets){
+	private void findAllTargets(BoardCell startCell, int pathLength, HashSet<BoardCell> visited, HashSet<BoardCell> targets){
 		visited.add(startCell);
 		for(BoardCell cell : adjMatrix.get(startCell)){
 			if(!visited.contains(cell)){
