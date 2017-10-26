@@ -86,6 +86,7 @@ public class Board {
 				}
 				legend.put(parts[0].charAt(0), parts[1].trim());
 				reader.close();
+				
 			}		
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
@@ -112,6 +113,7 @@ public class Board {
 				counter++;
 			}	
 			reader1.close();
+			
 			numRows = counter;
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
@@ -145,6 +147,7 @@ public class Board {
 				i++;
 			}	
 			reader.close();
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
 		} catch (IOException e) {		
@@ -237,7 +240,7 @@ public class Board {
 	/**
 	 * loads the information from the configuration files
 	 * @param csv layout file
-	 * @param txt tegend file
+	 * @param txt legend file
 	 */
 	public void setConfigFiles(String csv, String txt){		
 		roomConfigFile = txt;

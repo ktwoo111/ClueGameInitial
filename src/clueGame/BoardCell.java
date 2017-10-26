@@ -7,26 +7,26 @@ public class BoardCell {
 	private DoorDirection doorDirection;
 	
 	
-	public BoardCell(int row, int column, String letters) {
+	public BoardCell(int row, int column, String labels) {
 		super();
 		this.row = row;
 		this.column = column;
 		
-		if(letters.length() > 1){
-			this.initial = letters.charAt(0);
-			if(letters.charAt(1) == 'D'){
+		if(labels.length() > 1){
+			this.initial = labels.charAt(0);
+			if(labels.charAt(1) == 'D'){
 				doorDirection = DoorDirection.DOWN;
 				
 			}
-			else if(letters.charAt(1) == 'U'){
+			else if(labels.charAt(1) == 'U'){
 				doorDirection = DoorDirection.UP;
 				
 			}
-			else if(letters.charAt(1) == 'L'){
+			else if(labels.charAt(1) == 'L'){
 				doorDirection = DoorDirection.LEFT;
 				
 			}
-			else if(letters.charAt(1) == 'R'){
+			else if(labels.charAt(1) == 'R'){
 				doorDirection = DoorDirection.RIGHT;			
 			}
 			else {
@@ -35,7 +35,7 @@ public class BoardCell {
 			
 		}
 		else {
-			this.initial = letters.charAt(0);
+			this.initial = labels.charAt(0);
 			doorDirection = DoorDirection.NONE;
 		}
 		
