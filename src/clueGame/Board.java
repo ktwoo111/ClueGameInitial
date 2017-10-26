@@ -87,7 +87,7 @@ public class Board {
 				reader.close();
 			}		
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("The file doesn't exist.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -113,7 +113,7 @@ public class Board {
 			reader1.close();
 			numRows = counter;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("The file doesn't exist.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -145,10 +145,8 @@ public class Board {
 			}	
 			reader.close();
 		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-		
+			System.out.println("The file doesn't exist.");
+		} catch (IOException e) {		
 			e.printStackTrace();
 		}
 
