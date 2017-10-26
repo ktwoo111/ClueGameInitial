@@ -17,7 +17,7 @@ import clueGame.BoardCell;
 public class Board {
 	private int numRows;
 	private int numColumns;
-	public static final int MAX_BOARD_SIZE = 100; //change later later!!!!!!!!!
+	public static final int MAX_BOARD_SIZE = 50; //change later later!!!!!!!!!
 	private BoardCell[][] board;
 	private HashMap<Character,String> legend;
 	private HashMap<BoardCell,Set<BoardCell>> adjMatrix;
