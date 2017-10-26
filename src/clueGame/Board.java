@@ -43,24 +43,7 @@ public class Board {
 	public void initialize() {
 
 		legend = new HashMap<Character,String>();
-		try {
-			FileReader reader = new FileReader(boardConfigFile);
-			Scanner in = new Scanner(reader);
-			String[] parts = in.nextLine().split(",");
-			numColumns = parts.length;
-			int counter = 1;
-			while(in.hasNextLine()){
-				in.nextLine();
-				counter++;
-			}	
-			reader.close();
-			numRows = counter;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-		board = new BoardCell[numRows][numColumns];
+		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		try {
 			loadRoomConfig();
 		} catch (BadConfigFormatException e1) {
@@ -117,6 +100,24 @@ public class Board {
 	 * @throws BadConfigFormatException 
 	 */
 	public void loadBoardConfig() throws BadConfigFormatException{
+		try {
+			FileReader reader1 = new FileReader(boardConfigFile);
+			Scanner in1 = new Scanner(reader1);
+			String[] parts = in1.nextLine().split(",");
+			numColumns = parts.length;
+			int counter = 1;
+			while(in1.hasNextLine()){
+				in1.nextLine();
+				counter++;
+			}	
+			reader1.close();
+			numRows = counter;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		
 		try {
 			FileReader reader = new FileReader(boardConfigFile);
 			Scanner in = new Scanner(reader);

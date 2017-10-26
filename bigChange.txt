@@ -1,0 +1,95 @@
+Before:
+
+public void initialize() {
+
+		legend = new HashMap<Character,String>();
+		try {
+			FileReader reader = new FileReader(boardConfigFile);
+			Scanner in = new Scanner(reader);
+			String[] parts = in.nextLine().split(",");
+			numColumns = parts.length;
+			int counter = 1;
+			while(in.hasNextLine()){
+				in.nextLine();
+				counter++;
+			}	
+			reader.close();
+			numRows = counter;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		board = new BoardCell[numRows][numColumns];
+.......
+
+
+public void loadBoardConfig() throws BadConfigFormatException{
+		try {
+			FileReader reader = new FileReader(boardConfigFile);
+			Scanner in = new Scanner(reader);
+			String input = "";
+			int i = 0; // is the row
+			while(in.hasNextLine()){
+				if (i >= numRows) {
+					throw new BadConfigFormatException();
+				}
+				input = in.nextLine();
+				if (input == ""){
+					break;
+				}
+				String[] parts = input.split(",");
+				if (parts.length != numColumns) {
+					throw new BadConfigFormatException();
+				}
+				if (!legend.containsKey(parts[0].charAt(0))){
+					throw new BadConfigFormatException(parts[0]);
+......
+
+
+After:
+
+public void initialize() {
+
+		legend = new HashMap<Character,String>();
+		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		try {
+			loadRoomConfig();
+		} catch (BadConfigFormatException e1) {
+			System.out.println(e1);
+			System.out.println(e1.getMessage());
+		}
+		try {
+			loadBoardConfig();
+		} catch (BadConfigFormatException e) {
+			System.out.println(e);
+			System.out.println(e.getMessage());
+...............
+
+public void loadBoardConfig() throws BadConfigFormatException{
+		try {
+			FileReader reader1 = new FileReader(boardConfigFile);
+			Scanner in1 = new Scanner(reader1);
+			String[] parts = in1.nextLine().split(",");
+			numColumns = parts.length;
+			int counter = 1;
+			while(in1.hasNextLine()){
+				in1.nextLine();
+				counter++;
+			}	
+			reader1.close();
+			numRows = counter;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		
+		try {
+			FileReader reader = new FileReader(boardConfigFile);
+			Scanner in = new Scanner(reader);
+			String input = "";
+			int i = 0; // is the row
+			while(in.hasNextLine()){
+				if (i >= numRows) {
+..................
