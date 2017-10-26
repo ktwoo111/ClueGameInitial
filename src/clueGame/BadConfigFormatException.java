@@ -7,8 +7,12 @@ package clueGame;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-@SuppressWarnings("serial")
 public class BadConfigFormatException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public BadConfigFormatException(){
 		super("Error: Invalid configuration file format.");
