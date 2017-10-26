@@ -6,6 +6,7 @@ package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -36,6 +37,7 @@ public class Board {
 
 	/**
 	 * initialize method to create the board and set up values
+	 * @throws IOException 
 	 * @throws BadConfigFormatException 
 	 */
 	public void initialize() {
@@ -50,9 +52,12 @@ public class Board {
 			while(in.hasNextLine()){
 				in.nextLine();
 				counter++;
-			}		
+			}	
+			reader.close();
 			numRows = counter;
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 		board = new BoardCell[numRows][numColumns];
@@ -76,6 +81,7 @@ public class Board {
 	/**
 	 * Loads the rooms for the board
 	 * @throws BadConfigFormatException 
+	 * @throws IOException 
 	 */
 	public void loadRoomConfig() throws BadConfigFormatException{
 		try {
@@ -95,9 +101,11 @@ public class Board {
 					throw new BadConfigFormatException(parts[2].trim());
 				}
 				legend.put(parts[0].charAt(0), parts[1].trim());
+				reader.close();
 			}		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -133,9 +141,13 @@ public class Board {
 					board[i][j] = new BoardCell(i,j,parts[j]);
 				}
 				i++;
-			}		
+			}	
+			reader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		} catch (IOException e) {
+		
 			e.printStackTrace();
 		}
 
