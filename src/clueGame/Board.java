@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -19,11 +20,11 @@ public class Board {
 	private int numColumns;
 	public static final int MAX_BOARD_SIZE = 50; //change later later!!!!!!!!!
 	private BoardCell[][] board;
-	private HashMap<Character,String> legend;
-	private HashMap<BoardCell,Set<BoardCell>> adjMatrix;
+	private Map<Character,String> legend;
+	private Map<BoardCell,Set<BoardCell>> adjMatrix;
 	private String boardConfigFile;
 	private String roomConfigFile;
-	private HashSet<BoardCell> targets;
+	private Set<BoardCell> targets;
 
 
 	// variable used for singleton pattern
@@ -202,14 +203,14 @@ public class Board {
 
 	public void calcTargets(int i, int j, int pathLength){
 		//targets.clear();
-		HashSet<BoardCell> visited = new HashSet<BoardCell>();
+		Set<BoardCell> visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		findAllTargets(board[i][j], pathLength, visited, targets);
 		targets.remove(board[i][j]);
 
 	}
 
-	private void findAllTargets(BoardCell startCell, int pathLength, HashSet<BoardCell> visited, HashSet<BoardCell> targets){
+	private void findAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> targets){
 		visited.add(startCell);
 		for(BoardCell cell : adjMatrix.get(startCell)){
 			if(!visited.contains(cell)){
@@ -230,7 +231,7 @@ public class Board {
 
 	}
 
-	public HashSet<BoardCell> getTargets() {
+	public Set<BoardCell> getTargets() {
 		return targets;
 	}
 	/**
@@ -246,7 +247,7 @@ public class Board {
 	 * 
 	 * @return legend HashMap containing the character symbols and names of rooms
 	 */
-	public HashMap<Character, String> getLegend() {
+	public Map<Character, String> getLegend() {
 		return legend;
 	}
 	public BoardCell getCellAt(int i, int j) {
