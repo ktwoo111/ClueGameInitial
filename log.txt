@@ -1,1 +1,1 @@
-Error: X is an invalid configuration input.
+Error: Invalid configuration file format.

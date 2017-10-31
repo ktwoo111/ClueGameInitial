@@ -1,2 +1,7 @@
-Gett, Yellow, 1, 3
-Connor, White, 4, 26
+Gett, 5, 7, yellow
+Connor, 9, 6, white
+Eddie, 16, 16, magenta
+Thomas, 16, 17, black
+Matt, 12, 15, pink
+Liz, 3, 5, orange  
+

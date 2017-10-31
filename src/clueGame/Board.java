@@ -48,14 +48,23 @@ public class Board {
 
 		legend = new HashMap<Character,String>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		
 		try {
 			loadRoomConfig();
 		} catch (BadConfigFormatException e1) {
 			System.out.println(e1);
 			System.out.println(e1.getMessage());
 		}
+		
 		try {
 			loadBoardConfig();
+		} catch (BadConfigFormatException e) {
+			System.out.println(e);
+			System.out.println(e.getMessage());
+		}
+		
+		try {
+			loadPlayerConfigFile("PlayerConfig.txt");
 		} catch (BadConfigFormatException e) {
 			System.out.println(e);
 			System.out.println(e.getMessage());
@@ -274,23 +283,30 @@ public class Board {
 
 
 	private void loadPlayerConfigFile(String file) throws BadConfigFormatException{
+		players = new ArrayList<Player>();
 		try {
-			FileReader reader = new FileReader(roomConfigFile);
+			FileReader reader = new FileReader(file);
 			Scanner in = new Scanner(reader);
 			String input = "";
+			boolean human = true;
 			while(in.hasNextLine()){
 				input = in.nextLine();
 				if (input == ""){
 					break;
 				}
 				String[] parts = input.split(",");
-				if (parts.length != 3) {
+				if (parts.length != 4) {
 					throw new BadConfigFormatException();
 				}
-				if (!parts[2].trim().equalsIgnoreCase("Card") && !parts[2].trim().equalsIgnoreCase("Other")){
-					throw new BadConfigFormatException(parts[2].trim());
+				
+				if(human){
+					players.add(new HumanPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));				
+					human = false;
 				}
-				legend.put(parts[0].charAt(0), parts[1].trim());
+				else {
+					players.add(new ComputerPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));						
+				}
+				
 				reader.close();
 				
 			}		
