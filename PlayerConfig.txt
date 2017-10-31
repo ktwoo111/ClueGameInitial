@@ -3,5 +3,4 @@ Connor, 9, 6, white
 Eddie, 16, 16, magenta
 Thomas, 16, 17, black
 Matt, 12, 15, pink
-Liz, 3, 5, orange  
-
+Liz, 5, 3, orange

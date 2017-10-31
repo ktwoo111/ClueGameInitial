@@ -27,6 +27,7 @@ public class Board {
 	private String roomConfigFile;
 	private Set<BoardCell> targets;
 	private ArrayList<Player> players; // arraylist to put in human and computer players
+	private ArrayList<Card> cards; // array list of all the cards
 
 
 
@@ -48,28 +49,28 @@ public class Board {
 
 		legend = new HashMap<Character,String>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		
+
 		try {
 			loadRoomConfig();
 		} catch (BadConfigFormatException e1) {
 			System.out.println(e1);
 			System.out.println(e1.getMessage());
 		}
-		
+
 		try {
 			loadBoardConfig();
 		} catch (BadConfigFormatException e) {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
-		
+
 		try {
 			loadPlayerConfigFile("PlayerConfig.txt");
 		} catch (BadConfigFormatException e) {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
-	
+
 
 		calcAdjacencies();
 
@@ -98,7 +99,7 @@ public class Board {
 				}
 				legend.put(parts[0].charAt(0), parts[1].trim());
 				reader.close();
-				
+
 			}		
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
@@ -125,14 +126,14 @@ public class Board {
 				counter++;
 			}	
 			reader1.close();
-			
+
 			numRows = counter;
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
-		
+
 		try {
 			FileReader reader = new FileReader(boardConfigFile);
 			Scanner in = new Scanner(reader);
@@ -159,7 +160,7 @@ public class Board {
 				i++;
 			}	
 			reader.close();
-			
+
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
 		} catch (IOException e) {		
@@ -232,16 +233,16 @@ public class Board {
 				visited.add(cell);
 				if(pathLength == 1 || cell.isDoorway()){
 					targets.add(cell);
-					
+
 				}
 				else {
 					findAllTargets(cell, pathLength-1, visited, targets);
 				}
-			
+
 				visited.remove(cell);
 			}
-			
-		
+
+
 		}
 
 	}
@@ -298,7 +299,7 @@ public class Board {
 				if (parts.length != 4) {
 					throw new BadConfigFormatException();
 				}
-				
+
 				if(human){
 					players.add(new HumanPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));				
 					human = false;
@@ -306,21 +307,57 @@ public class Board {
 				else {
 					players.add(new ComputerPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));						
 				}
-				
+
 				reader.close();
-				
+
 			}		
 		} catch (FileNotFoundException e) {
 			System.out.println("The file doesn't exist.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
+	private void loadCardConfigFile(String file) throws BadConfigFormatException{
+		cards = new ArrayList<Card>();
+		try {
+			FileReader reader = new FileReader(file);
+			Scanner in = new Scanner(reader);
+			String input = "";
+			boolean human = true;
+			while(in.hasNextLine()){
+				input = in.nextLine();
+				if (input == ""){
+					break;
+				}
+				String[] parts = input.split(",");
+				if (parts.length != 4) {
+					throw new BadConfigFormatException();
+				}
+
+				if(human){
+					players.add(new HumanPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));				
+					human = false;
+				}
+				else {
+					players.add(new ComputerPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));						
+				}
+
+				reader.close();
+
+			}		
+		} catch (FileNotFoundException e) {
+			System.out.println("The file doesn't exist.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+	}	
 	public void selectAnswer(){
 		//TODO
-		
+
 	}
 	public Card handleSuggestion(){
 		//TODO
@@ -330,27 +367,31 @@ public class Board {
 		//TODO
 		return false;		
 	}
-	
-	
-	
+
+
+
 	/////////////////////////////////////////////////below stuff is purely for testing
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 	
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
 	public static void main(String args[]){
 		Board board = Board.getInstance();
 		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
 		board.initialize();
 		board.calcTargets(6, 12, 4);
 		System.out.println(board.getTargets().size());
-	for (BoardCell x : board.getTargets()){
+		for (BoardCell x : board.getTargets()){
 			System.out.println(x);
 		}	
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 }

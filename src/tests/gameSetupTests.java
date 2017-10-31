@@ -57,7 +57,40 @@ public class gameSetupTests {
 	
 	@Test
 	public void createAndloadDeckOfCardsTest() {
-		//TODO
+		//Test total number of cards is equal 21
+		assertEquals(21,board.getCards().size());
+		
+		//Test that the correct number of each card is in the deck
+		int weapon = 0;
+		int people = 0;
+		int room = 0;
+		for (int i = 0; i < 21; i++){
+			if(board.getCards().get(i).getCardType() == board.getCards().get(i).cardType.WEAPON){weapon++;}
+			else if(board.getCards().get(i).getCardType() == board.getCards().get(i).cardType.ROOM){room++;}
+			else if(board.getCards().get(i).getCardType() == board.getCards().get(i).cardType.PERSON){people++;}
+			
+		}
+		
+		assertEquals(6,people);
+		assertEquals(6,weapon);
+		assertEquals(9,people);
+		
+		//Test that one of each card has the correct name associated with it
+		boolean testRoom = false;
+		boolean testPerson = false;
+		boolean testWeapon = false;
+		for (int i = 0; i < 21; i++) {
+			if (board.getCards().get(i).getCardName() == "Gett") {
+				testPerson = true;
+			}
+			else if (board.getCards().get(i).getCardName() == "ComputerGame Room") {
+				testRoom = true;
+			}
+			else if (board.getCards().get(i).getCardName() == "axe") {
+				testWeapon = true;
+			}
+		}
+		assertTrue(testRoom && testWeapon && testPerson);
 	}
 	
 	@Test
