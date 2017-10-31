@@ -270,6 +270,24 @@ public class Board {
 	}
 
 
+	public void loadConfigFiles(){
+		//TODO
+	}
+	public void selectAnswer(){
+		//TODO
+		
+	}
+	public Card handleSuggestion(){
+		//TODO
+		return null;
+	}
+	public boolean checkAccusation(Solution accusation){
+		//TODO
+		return false;		
+	}
+	
+	
+	
 	
 	public static void main(String args[]){
 		Board board = Board.getInstance();
