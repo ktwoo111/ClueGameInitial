@@ -7,6 +7,7 @@ package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class Board {
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private Set<BoardCell> targets;
+	private ArrayList<Player> players; // arraylist to put in human and computer players
+
 
 
 	// variable used for singleton pattern
@@ -57,7 +60,7 @@ public class Board {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
-		//System.out.println("DONE3");
+	
 
 		calcAdjacencies();
 
@@ -270,8 +273,34 @@ public class Board {
 	}
 
 
-	public void loadConfigFiles(){
-		//TODO
+	private void loadPlayerConfigFile(String file) throws BadConfigFormatException{
+		try {
+			FileReader reader = new FileReader(roomConfigFile);
+			Scanner in = new Scanner(reader);
+			String input = "";
+			while(in.hasNextLine()){
+				input = in.nextLine();
+				if (input == ""){
+					break;
+				}
+				String[] parts = input.split(",");
+				if (parts.length != 3) {
+					throw new BadConfigFormatException();
+				}
+				if (!parts[2].trim().equalsIgnoreCase("Card") && !parts[2].trim().equalsIgnoreCase("Other")){
+					throw new BadConfigFormatException(parts[2].trim());
+				}
+				legend.put(parts[0].charAt(0), parts[1].trim());
+				reader.close();
+				
+			}		
+		} catch (FileNotFoundException e) {
+			System.out.println("The file doesn't exist.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	public void selectAnswer(){
 		//TODO
@@ -288,6 +317,10 @@ public class Board {
 	
 	
 	
+	/////////////////////////////////////////////////below stuff is purely for testing
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
 	
 	public static void main(String args[]){
 		Board board = Board.getInstance();
