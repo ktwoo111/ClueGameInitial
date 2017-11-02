@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Set;
 
 public abstract class Player {
 	private String playerName;
@@ -11,6 +12,7 @@ public abstract class Player {
 	private Color color;
 	private ArrayList<Card> myCards;
 	private ArrayList<Card> seenCards;
+
 
 	public Player(String playerName, int row, int column, String color) {
 		this.playerName = playerName;
@@ -36,6 +38,11 @@ public abstract class Player {
 	
 
 	public abstract Card disproveSuggestion(Solution suggestion);
+	
+	public BoardCell pickLocation(Set<BoardCell> targets){
+		//TODO maybe need maybe no
+		return null;	
+	}
 	
 	
 	////////////////////////below stuff is purely for testing

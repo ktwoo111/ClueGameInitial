@@ -1,0 +1,191 @@
+commit 8442136564e384f6a0ae9050ea9b244fa2bd9627
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 12:04:11 2017 -0600
+
+    Addded javadoc comments to player and card functions
+
+commit f5a00a8f162235a030e15ddd84cb867bd413834e
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 12:00:12 2017 -0600
+
+    working dealing card test.
+
+commit 31fdaca86a7a28509d290e333446390a1ec34fc0
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 11:43:31 2017 -0600
+
+    failing dealing cards.
+
+commit 6191ac05829780bbc5d8ce6c1bc951687ac5ca33
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 11:07:59 2017 -0600
+
+    creating and loading deck cards works.
+
+commit c4daf7a9c6ac534e749f918b5ddafe676a862dc5
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 31 12:14:42 2017 -0600
+
+    failing test for loadingCard.
+
+commit b312bce311fda18229ec17760bf91c7e7f224448
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 31 11:53:29 2017 -0600
+
+    loadingPeopleTest works.
+
+commit 5eceae02e56cef8c021f585dd117a1d00a50d825
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 31 11:40:46 2017 -0600
+
+    failing loadingPeopleTest.
+
+commit 9f3c00e69ed367867e1b46c195758b45e4ffd13e
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 31 11:04:43 2017 -0600
+
+    all skeletons for classes and functions from UML from C19 players Pt1.
+
+commit c96d768ad1a78790337ea09af60c685740f56403
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 12:16:16 2017 -0600
+
+    changed variable name from letters to labels for BoardCell Constructor for name that makes more sense.
+
+commit 449e54eebb691f8ca28d0a581a8d4f8ae3106c3e
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 12:11:46 2017 -0600
+
+    changed all HashMap and HashSet declaration to Map and Set because that is a better practice.
+
+commit ece563fe608bd86ca687fe7b3e498720ef5c292e
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 12:07:50 2017 -0600
+
+    instead of suppressing serial warning in BadConfigFormatException, we just gave it a default serial id.
+
+commit e45d11ba7dbdb1dbd226f3ccdd7b805eea204fb0
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 12:06:41 2017 -0600
+
+    added custom messages for FileNotFoundException.
+
+commit d40b30d7881f9d74744a484c79cb53653ae4e71f
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 12:04:54 2017 -0600
+
+    changed MAX_BOARD_SIZE from 100 to 50, and used that variable to initialize the board instead of numRows and numColumns.
+
+commit 27a5f0363abd67805281036e182fb470db40c707
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 12:04:10 2017 -0600
+
+    moved the code that reads in the rows and columns into loadBoardConfig instead of Initialize because only loadBoardConfig() really needs that information.:
+
+commit 1fb87cb8ba6e7ee518db6ab6aca099e9c2d49e50
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 11:55:57 2017 -0600
+
+    changed findAllTargets() to private because it is a helper function.
+
+commit 82addbcb6ed015b16c4d02188e894aff0f708e03
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 26 11:54:46 2017 -0600
+
+    closed all our readers in Initialize(), LoadRoomConfig(), and LoadBoardConfig().
+
+commit 802fb2311b8ab4fc8a465062b747cef50b44839a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Mon Oct 23 15:34:42 2017 -0600
+
+    adding the gitlog.txt for C14IV.
+
+commit 0639971b741b4762ce59fdf51315f6ead9321c1a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 17 17:27:11 2017 -0600
+
+    fixed calcAllTargets.
+
+commit fd7adc485bf136f8644efb24dbcd8daada7709ed
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 17 16:17:22 2017 -0600
+
+    removed calcadjacencies() call in initialize to get FileInitTests to work again.
+
+commit b78d5de18924ed75a0e7f48a2f598bf6970f2958
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 17 16:11:14 2017 -0600
+
+    finished up making failing tests for adjacency and target testing.
+
+commit e2185691177dc5cff1f8532eed0743f82e38aadf
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 12 10:54:47 2017 -0600
+
+    new excel sheet.
+
+commit 011749439b1e1ddb13abb45ee71b1938c235df6a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 10 12:07:44 2017 -0600
+
+    in middle of modifying our test from teacher's failing test for adjacency and targets.
+
+commit 1fcbc7124e8d0f1151bae6ea09d8b462e0571ffa
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 10 11:46:47 2017 -0600
+
+    added CR_BoardAdjTargetTest.java and updated our Our_ClueLyout.xlsx.
+
+commit e1f3b3691f42a29dbbda157f40f2018bbbfd1c3e
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sat Oct 7 15:13:36 2017 -0600
+
+    Exception tests done.
+
+commit 19355b3d5555a2f7d71f32132fca074eb970e559
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sat Oct 7 14:27:14 2017 -0600
+
+    initial tests working and successful.
+
+commit eba382e464ab3f719c79a15a359ef478c72deaad
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sat Oct 7 12:55:57 2017 -0600
+
+    Part 1 done.
+
+commit 205740c380654b2e4c9dafa42cba079ad0261fbe
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 5 12:13:50 2017 -0600
+
+    added some classes and tweaking with testing files to get rid of reds.
+
+commit d4596e4b3e275b912fadd8b3ebba125acff96504
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 5 12:05:58 2017 -0600
+
+    adding classes.
+
+commit 31be6e67a35c0bb3f9945874b01851072532d23a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Oct 5 11:35:18 2017 -0600
+
+    latest.
+
+commit ee7adef3f246fee365051b4d53228bc00145b1fc
+Author: John Baker <jcbaker.mymail.mines.edu>
+Date:   Tue Oct 3 19:09:39 2017 -0600
+
+    added codes to make test pass.
+
+commit 4344ee349880b15847b5a93aedd562db8acb2b2a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 3 12:14:48 2017 -0600
+
+    got testing for adjacency working. Need to have failing tests as well.
+
+commit 00aa700f48fa883bc2a8fba6115fee4c0dfd209a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Tue Oct 3 11:31:56 2017 -0600
+
+    first.
