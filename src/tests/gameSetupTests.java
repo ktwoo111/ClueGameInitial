@@ -113,7 +113,7 @@ public class gameSetupTests {
 		double numPlayers = board.getPlayers().size();
 		boolean correctCardNumber = true;
 		for(Player p : board.getPlayers()) {
-			if (p.getMyCards().size() != Math.floor(numCards/numPlayers) || p.getMyCards().size() != Math.ceil(numCards)/numPlayers) {
+			if (p.getMyCards().size() != (int)Math.floor(numCards/numPlayers) && p.getMyCards().size() != (int)Math.ceil(numCards/numPlayers)) {
 				correctCardNumber = false;
 			}
 		}
@@ -123,7 +123,7 @@ public class gameSetupTests {
 		Map<String,Integer> duplicateCheck = new HashMap<String,Integer>();
 		for(Player p:board.getPlayers()) {
 			for (Card c:p.getMyCards()) {
-				if(duplicateCheck.containsKey(c.getCardName())){
+				if(!duplicateCheck.containsKey(c.getCardName())){
 				duplicateCheck.put(c.getCardName(), 1);
 				}
 				else {

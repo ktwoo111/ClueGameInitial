@@ -8,9 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -73,6 +75,7 @@ public class Board {
 		}
 
 		loadCardConfigFile("Weapons.txt");
+		shuffleAndDealCards();
 
 		calcAdjacencies();
 
@@ -284,7 +287,33 @@ public class Board {
 		return adjMatrix.get(board[i][j]);
 	}
 
-
+	private void shuffleAndDealCards() {
+		long seed = System.nanoTime();
+		Collections.shuffle(cards, new Random(seed));
+		
+		double numCards = cards.size();
+		double numPlayers = players.size();
+		int mostNum = (int)Math.floor(numCards/numPlayers);
+		int lastNum = (int)Math.ceil(numCards/numPlayers);
+		
+	
+		int counter = 0;
+		for(int i = 0; i < players.size(); i++){
+			if(i  < numCards%numPlayers){
+				for(int j = 0; j < lastNum; j++){		
+					players.get(i).getMyCards().add(cards.get(counter));
+					counter++;				
+				}
+			}
+			else {
+				for(int j = 0; j < mostNum; j++){
+				
+					players.get(i).getMyCards().add(cards.get(counter));
+					counter++;			
+				}
+			}
+		}
+	}
 	private void loadPlayerConfigFile(String file) throws BadConfigFormatException{
 		players = new ArrayList<Player>();
 		try {
@@ -387,19 +416,6 @@ public class Board {
 		Board board = Board.getInstance();
 		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
 		board.initialize();
-		
-		for(Card c : board.cards){
-			if (c.getCardName() == "Gett") {
-				System.out.println(c.getCardName());
-			}
-			else if (c.getCardName() == "ComputerGame Room") {
-				System.out.println(c.getCardName());
-			}
-			else if (c.getCardName() == "axe") {
-				System.out.println(c.getCardName());
-			}
-			
-		}
 
 
 
