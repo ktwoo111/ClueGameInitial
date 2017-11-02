@@ -81,7 +81,7 @@ public class Board {
 
 	}
 	private void setSolution() {
-		// TODO Auto-generated method stub
+		// TODO MAYBE NEED THIS OR NOT
 		
 	}
 	/**
@@ -412,8 +412,13 @@ public class Board {
 		return null;
 	}
 	public boolean checkAccusation(Solution accusation){
-		//TODO
-		return false;		
+		if(accusation.equals(theAnswer)){
+			return true;
+		}
+		else {
+			return false;
+			
+		}
 	}
 
 
@@ -428,8 +433,7 @@ public class Board {
 		return cards;
 	}
 	public Solution getSolution() {
-		// TODO Auto-generated method stub
-		return null;
+		return theAnswer;
 	}
 	public static void main(String args[]){
 		

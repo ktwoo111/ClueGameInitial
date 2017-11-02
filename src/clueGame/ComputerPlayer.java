@@ -50,8 +50,13 @@ public class ComputerPlayer extends Player {
 		
 		//TODO
 	}
-	public void createSuggestion(){
-		//TODO
+	public Solution createSuggestion(ArrayList<Card> cards){
+		//check the suggestion match current location
+		
+		return null;
+		
+		
+		
 	}
 
 	public char getPreviousLocation() {
