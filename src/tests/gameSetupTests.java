@@ -2,12 +2,17 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
 import clueGame.Card;
+import clueGame.Player;
 
 public class gameSetupTests {
 
@@ -96,7 +101,47 @@ public class gameSetupTests {
 	
 	@Test
 	public void dealingCardsTest() {
-		//TODO
+		//All cards should be dealt
+		int counter = 0;
+		for(Player p : board.getPlayers()) {
+			counter += p.getMyCards().size();
+		}
+		assertEquals(counter, board.getCards().size());
+		
+		//All players have ROUGHLY the same number of cards
+		double numCards = board.getCards().size();
+		double numPlayers = board.getPlayers().size();
+		boolean correctCardNumber = true;
+		for(Player p : board.getPlayers()) {
+			if (p.getMyCards().size() != Math.floor(numCards/numPlayers) || p.getMyCards().size() != Math.ceil(numCards)/numPlayers) {
+				correctCardNumber = false;
+			}
+		}
+		assertTrue(correctCardNumber);
+		
+		//No two players have the same card
+		Map<String,Integer> duplicateCheck = new HashMap<String,Integer>();
+		for(Player p:board.getPlayers()) {
+			for (Card c:p.getMyCards()) {
+				if(duplicateCheck.containsKey(c.getCardName())){
+				duplicateCheck.put(c.getCardName(), 1);
+				}
+				else {
+					duplicateCheck.put(c.getCardName(), duplicateCheck.get(c.getCardName()) + 1);	
+				}
+			}
+		}
+		
+		Set<String> keys = duplicateCheck.keySet();
+		boolean noDuplicate = true;
+		for (String x : keys){
+			if(duplicateCheck.get(x) > 1){
+				noDuplicate = false;			
+			}
+		}
+		
+		assertTrue(noDuplicate);
+		
 	}
 
 }
