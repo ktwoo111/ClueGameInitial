@@ -44,7 +44,7 @@ public class Board {
 	}
 
 	/**
-	 * initialize method to create the board and set up values
+	 * initialize method to create the board and set up values, loads players, cards and deals cards
 	 * @throws IOException 
 	 * @throws BadConfigFormatException 
 	 */
@@ -286,7 +286,9 @@ public class Board {
 
 		return adjMatrix.get(board[i][j]);
 	}
-
+	/**
+	 * randomizes deck and deals out the cards
+	 */
 	private void shuffleAndDealCards() {
 		long seed = System.nanoTime();
 		Collections.shuffle(cards, new Random(seed));
@@ -314,6 +316,11 @@ public class Board {
 			}
 		}
 	}
+	/**
+	 * 
+	 * @param file the file that contains player imformation
+	 * @throws BadConfigFormatException
+	 */
 	private void loadPlayerConfigFile(String file) throws BadConfigFormatException{
 		players = new ArrayList<Player>();
 		try {
@@ -350,6 +357,10 @@ public class Board {
 
 
 	}
+	/**
+	 * 
+	 * @param file the file that contains the card information
+	 */
 	private void loadCardConfigFile(String file){
 		 	
 		cards = new ArrayList<Card>();
