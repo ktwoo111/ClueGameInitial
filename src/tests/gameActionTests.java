@@ -11,6 +11,7 @@ import org.junit.Test;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.ComputerPlayer;
+import clueGame.Solution;
 
 public class gameActionTests {
 	private static Board board;
@@ -77,7 +78,18 @@ public class gameActionTests {
 	}
 	@Test
 	public void checkAccusationtest() {
-		fail("Not yet implemented");
+		//"Matt", "Dining Room", "axe" is the solution
+		//Correct Accusation test
+		assertTrue(board.checkAccusation(board.getSolution()));
+		
+		//Solution with wrong person
+		assertTrue(!(board.checkAccusation(new Solution("Gett", "Dining Room", "axe" ))));
+		
+		//Solution with wrong weapon
+		assertTrue(!(board.checkAccusation(new Solution("Matt", "Dining Room", "wire" ))));
+				
+		//Solution with wrong room
+		assertTrue(!(board.checkAccusation(new Solution("Matt", "ComputerGame Room", "axe" ))));
 	}
 	@Test
 	public void disproveSuggestiontest() {

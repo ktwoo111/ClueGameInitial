@@ -31,7 +31,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private ArrayList<Player> players; // arraylist to put in human and computer players
 	private ArrayList<Card> cards; // array list of all the cards
-
+	private Solution theAnswer;
 
 
 	// variable used for singleton pattern
@@ -49,10 +49,10 @@ public class Board {
 	 * @throws BadConfigFormatException 
 	 */
 	public void initialize() {
-
+		theAnswer = new Solution("Matt", "Dining Room", "axe");
 		legend = new HashMap<Character,String>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-
+		
 		try {
 			loadRoomConfig();
 		} catch (BadConfigFormatException e1) {
@@ -76,9 +76,13 @@ public class Board {
 
 		loadCardConfigFile("Weapons.txt");
 		shuffleAndDealCards();
-
+		setSolution();
 		calcAdjacencies();
 
+	}
+	private void setSolution() {
+		// TODO Auto-generated method stub
+		
 	}
 	/**
 	 * Loads the rooms for the board
@@ -423,6 +427,10 @@ public class Board {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
+	public Solution getSolution() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	public static void main(String args[]){
 		
 		Board board = Board.getInstance();
@@ -460,6 +468,8 @@ public class Board {
 		
 
 	}
+
+
 
 
 }
