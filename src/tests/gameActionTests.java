@@ -43,7 +43,7 @@ public class gameActionTests {
 		int optionThree = 0;
 		int optionFour = 0;
 		for (int i = 0; i < 100; i++) {
-			BoardCell target = compPlayer.pickLocation(board.getTargets());
+			BoardCell target = compPlayer.pickLocation(board.getTargets(), 'W');
 			if (target == board.getCellAt(15, 17)) {
 				optionOne++;
 			}
@@ -53,7 +53,7 @@ public class gameActionTests {
 			else if (target == board.getCellAt(17, 17)) {
 				optionThree++;
 			}
-			else if (target == board.getCellAt(16, 15)) {
+			else if (target == board.getCellAt(16, 16)) {
 				optionFour++;
 			}
 		}
@@ -61,23 +61,19 @@ public class gameActionTests {
 		
 		//Test target with room in target list and previous location not being a room
 		board.calcTargets(row, column, 3);
-		BoardCell target = compPlayer.pickLocation(board.getTargets());
+		BoardCell target = compPlayer.pickLocation(board.getTargets(), 'W');
 		assertEquals(target, board.getCellAt(17, 19));
 		
 		//Test target with room in target list and previous location being a room
-		compPlayer.setPreviousLocation(board.getCellAt(17, 19));
 		board.calcTargets(row, column, 3);
-		BoardCell targetTwo = compPlayer.pickLocation(board.getTargets());
+		BoardCell targetTwo = compPlayer.pickLocation(board.getTargets(), 'G');
 		assertTrue(!(targetTwo.equals(board.getAdjList(17, 19))));
 
 		
 		
 		
 		
-		
-		
-		
-		fail("Not yet implemented");
+
 	}
 	@Test
 	public void checkAccusationtest() {

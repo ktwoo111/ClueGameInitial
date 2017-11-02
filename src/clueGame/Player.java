@@ -39,11 +39,6 @@ public abstract class Player {
 
 	public abstract Card disproveSuggestion(Solution suggestion);
 	
-	public BoardCell pickLocation(Set<BoardCell> targets){
-		//TODO maybe need maybe no
-		return null;	
-	}
-	
 	
 	////////////////////////below stuff is purely for testing
 	public int getRow() {

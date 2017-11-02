@@ -424,11 +424,40 @@ public class Board {
 		return cards;
 	}
 	public static void main(String args[]){
+		
 		Board board = Board.getInstance();
 		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
 		board.initialize();
+       
+		ComputerPlayer compPlayer = new ComputerPlayer("Thomas", 16, 17,"black");
+		int row = compPlayer.getRow(); // 4th player which is computer
+		int column = compPlayer.getColumn();
+		board.calcTargets(row, column, 1);
+		int optionOne = 0;
+		int optionTwo = 0;
+		int optionThree = 0;
+		int optionFour = 0;
+		for (int i = 0; i < 100; i++) {
+			BoardCell target = compPlayer.pickLocation(board.getTargets(), 'W');
+			if (target == board.getCellAt(15, 17)) {
+				optionOne++;
+			}
+			else if (target == board.getCellAt(16, 18)) {
+				optionTwo++;
+			}
+			else if (target == board.getCellAt(17, 17)) {
+				optionThree++;
+			}
+			else if (target == board.getCellAt(16, 15)) {
+				optionFour++;
+			}
+		}
+		System.out.println(optionOne);
 
-
+		System.out.println(optionTwo);
+		System.out.println(optionThree);
+		System.out.println(optionFour);
+		
 
 	}
 
