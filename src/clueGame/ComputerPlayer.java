@@ -60,14 +60,11 @@ public class ComputerPlayer extends Player {
 	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){ //get currentRoom by accessing legend		
 		
 		//TODO 11/2/2017 LET'S DO THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		ArrayList<Card> remainingCards = new ArrayList<Card>();
-		System.out.println(remainingCards.size());
+		ArrayList<Card> remainingCards = cards;
 		
-		for(Card c: cards){
-			if(!super.getSeenCards().contains(c) && !super.getMyCards().contains(c)){
-				remainingCards.add(c);
-			}
-		}
+		remainingCards.removeAll(super.getMyCards());
+		remainingCards.removeAll(super.getSeenCards());
+		System.out.println(remainingCards.size());
 		
 		System.out.println(super.getSeenCards().size());
 		System.out.println(super.getMyCards().size());

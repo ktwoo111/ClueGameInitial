@@ -13,14 +13,24 @@ public class Card {
 	}
 	
 	
-	public boolean equals(Card b){
-		if(b.getCardName().equals(this.cardName)){
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-			
-		}
-		else {return false;}
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Card other = (Card) obj;
+		if (cardName == null) {
+			if (other.cardName != null)
+				return false;
+		} else if (!cardName.equals(other.cardName))
+			return false;
+		return true;
 	}
-	
+
+
 	public CardType getCardType(){
 		return cardType;
 		
