@@ -13,10 +13,12 @@ public class Card {
 	}
 	
 	
-	public boolean equals(){
-		//TODO:
-		
-		return true;
+	public boolean equals(Card b){
+		if(b.getCardName().equals(this.cardName)){
+			return true;
+			
+		}
+		else {return false;}
 	}
 	
 	public CardType getCardType(){

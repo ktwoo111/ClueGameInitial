@@ -99,7 +99,7 @@ public class gameActionTests {
 		ComputerPlayer test = new ComputerPlayer("Thomas", 19, 8,"black");
 
 		//making sure suggestion is in the same place as player
-		assertEquals(test.createSuggestion(board.getCards()).room, "Library");
+		assertEquals("Library", test.createSuggestion(board.getCards(),"Library").room);
 
 		// if only one person not seen, choose that one.
 		test.getSeenCards().add(new Card("Gett","person"));
@@ -109,7 +109,7 @@ public class gameActionTests {
 		test.getMyCards().add(new Card("Thomas","person"));
 
 		//should only pop out Liz as answer
-		assertEquals("Liz", test.createSuggestion(board.getCards()).person);
+		assertEquals("Liz", test.createSuggestion(board.getCards(),"Library").person);
 
 
 		// if only one weapon not seen, choose that one.
@@ -121,7 +121,7 @@ public class gameActionTests {
 		test.getMyCards().add(new Card("pillow","weapon"));
 
 		//should pop out knife
-		assertEquals("knife", test.createSuggestion(board.getCards()).weapon);
+		assertEquals("knife", test.createSuggestion(board.getCards(),"Library").weapon);
 
 		test.getSeenCards().clear();
 		test.getMyCards().clear();
@@ -133,14 +133,14 @@ public class gameActionTests {
 
 		//if multiple weapons not seen, choose random
 		for(int i = 0; i < 100; i++){
-			assertTrue(!test.createSuggestion(board.getCards()).weapon.equals("axe"));
-			assertTrue(!test.createSuggestion(board.getCards()).weapon.equals("gun"));
+			assertTrue(!test.createSuggestion(board.getCards(), "Library").weapon.equals("axe"));
+			assertTrue(!test.createSuggestion(board.getCards(), "Library").weapon.equals("gun"));
 		}
 
 		//if multiple people not seen, choose random
 		for (int i = 0; i < 100; i++){
-			assertTrue(!test.createSuggestion(board.getCards()).person.equals("Gett"));
-			assertTrue(!test.createSuggestion(board.getCards()).person.equals("Connor"));
+			assertTrue(!test.createSuggestion(board.getCards(), "Library").person.equals("Gett"));
+			assertTrue(!test.createSuggestion(board.getCards(), "Library").person.equals("Connor"));
 		}
 
 
