@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 import clueGame.BoardCell;
 
@@ -21,7 +22,7 @@ public class Board {
 	private int numColumns;
 	public static final int MAX_BOARD_SIZE = 50; //change later later!!!!!!!!!
 	private BoardCell[][] board;
-	private Map<Character,String> legend;
+	private Map<Character,String> legend; // has room information
 	private Map<BoardCell,Set<BoardCell>> adjMatrix;
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -71,6 +72,7 @@ public class Board {
 			System.out.println(e.getMessage());
 		}
 
+		loadCardConfigFile("Weapons.txt");
 
 		calcAdjacencies();
 
@@ -319,31 +321,21 @@ public class Board {
 
 
 	}
-	private void loadCardConfigFile(String file) throws BadConfigFormatException{
+	private void loadCardConfigFile(String file){
+		 	
 		cards = new ArrayList<Card>();
+		//WEAPONS
 		try {
 			FileReader reader = new FileReader(file);
 			Scanner in = new Scanner(reader);
 			String input = "";
-			boolean human = true;
 			while(in.hasNextLine()){
 				input = in.nextLine();
 				if (input == ""){
 					break;
 				}
-				String[] parts = input.split(",");
-				if (parts.length != 4) {
-					throw new BadConfigFormatException();
-				}
 
-				if(human){
-					players.add(new HumanPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));				
-					human = false;
-				}
-				else {
-					players.add(new ComputerPlayer(parts[0].trim(), Integer.parseInt(parts[1].trim()),Integer.parseInt(parts[2].trim()),parts[3].trim()));						
-				}
-
+				cards.add(new Card(input,"weapon"));
 				reader.close();
 
 			}		
@@ -352,8 +344,20 @@ public class Board {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
+		
+		//ROOM from legend arraylist
+		Set<Character> keys = legend.keySet();
+		
+		for(Character c : keys){
+			if(!(legend.get(c).equals("Closet") || legend.get(c).equals("Walkway"))){ //closet and walkway are not rooms
+			cards.add(new Card(legend.get(c),"room"));
+			}
+		}
+		
+		//PEOPLE
+		for(Player p : players){
+			cards.add(new Card(p.getPlayerName(),"person"));
+		}
 	}	
 	public void selectAnswer(){
 		//TODO
@@ -383,11 +387,19 @@ public class Board {
 		Board board = Board.getInstance();
 		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
 		board.initialize();
-		board.calcTargets(6, 12, 4);
-		System.out.println(board.getTargets().size());
-		for (BoardCell x : board.getTargets()){
-			System.out.println(x);
-		}	
+		
+		for(Card c : board.cards){
+			if (c.getCardName() == "Gett") {
+				System.out.println(c.getCardName());
+			}
+			else if (c.getCardName() == "ComputerGame Room") {
+				System.out.println(c.getCardName());
+			}
+			else if (c.getCardName() == "axe") {
+				System.out.println(c.getCardName());
+			}
+			
+		}
 
 
 

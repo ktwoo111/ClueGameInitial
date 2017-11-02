@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.Card;
 
 public class gameSetupTests {
 
@@ -65,28 +66,28 @@ public class gameSetupTests {
 		int people = 0;
 		int room = 0;
 		for (int i = 0; i < 21; i++){
-			if(board.getCards().get(i).getCardType() == board.getCards().get(i).cardType.WEAPON){weapon++;}
-			else if(board.getCards().get(i).getCardType() == board.getCards().get(i).cardType.ROOM){room++;}
-			else if(board.getCards().get(i).getCardType() == board.getCards().get(i).cardType.PERSON){people++;}
+			if(board.getCards().get(i).getCardType() == Card.CardType.WEAPON){weapon++;}
+			else if(board.getCards().get(i).getCardType() == Card.CardType.ROOM){room++;}
+			else if(board.getCards().get(i).getCardType() == Card.CardType.PERSON){people++;}
 			
 		}
 		
 		assertEquals(6,people);
 		assertEquals(6,weapon);
-		assertEquals(9,people);
+		assertEquals(9,room);
 		
 		//Test that one of each card has the correct name associated with it
 		boolean testRoom = false;
 		boolean testPerson = false;
 		boolean testWeapon = false;
 		for (int i = 0; i < 21; i++) {
-			if (board.getCards().get(i).getCardName() == "Gett") {
+			if (board.getCards().get(i).getCardName().equals("Gett")) {
 				testPerson = true;
 			}
-			else if (board.getCards().get(i).getCardName() == "ComputerGame Room") {
+			else if (board.getCards().get(i).getCardName().equals("ComputerGame Room")) {
 				testRoom = true;
 			}
-			else if (board.getCards().get(i).getCardName() == "axe") {
+			else if (board.getCards().get(i).getCardName().equals("axe")) {
 				testWeapon = true;
 			}
 		}

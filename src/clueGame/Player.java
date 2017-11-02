@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.lang.reflect.Field;
 
 public abstract class Player {
-	public String playerName;
-	public int row;
-	public int column;
-	public Color color;
+	private String playerName;
+	private int row;
+	private int column;
+	private Color color;
 
 	public Player(String playerName, int row, int column, String color) {
 		this.playerName = playerName;

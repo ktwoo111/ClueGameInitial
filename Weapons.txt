@@ -1,0 +1,6 @@
+axe
+gun
+textbook
+wire
+pillow
+knife
