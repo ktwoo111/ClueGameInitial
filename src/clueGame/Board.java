@@ -407,7 +407,10 @@ public class Board {
 		//TODO
 
 	}
-	public Card handleSuggestion(){
+	public Card handleSuggestion(Solution suggestion, Solution theAnswer, Player accuser, ArrayList<Player> players){
+		
+		
+		
 		//TODO
 		return null;
 	}
@@ -439,7 +442,7 @@ public class Board {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
-	public Solution getSolution() {
+	public Solution getAnswer() {
 		return theAnswer;
 	}
 	public static void main(String args[]){

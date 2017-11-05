@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.junit.Before;
@@ -12,6 +13,8 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.ComputerPlayer;
+import clueGame.HumanPlayer;
+import clueGame.Player;
 import clueGame.Solution;
 
 public class gameActionTests {
@@ -82,7 +85,7 @@ public class gameActionTests {
 	public void checkAccusationtest() {
 		//"Matt", "Dining Room", "axe" is the solution
 		//Correct Accusation test
-		assertTrue(board.checkAccusation(board.getSolution()));
+		assertTrue(board.checkAccusation(board.getAnswer()));
 
 		//Solution with wrong person
 		assertTrue(!(board.checkAccusation(new Solution("Gett", "Dining Room", "axe" ))));
@@ -194,7 +197,49 @@ public class gameActionTests {
 	}
 	@Test
 	public void handlingSuggestiontest() {
-		assertTrue(true);
+		ComputerPlayer c1 = new ComputerPlayer("Thomas", 19, 8,"black");
+		c1.getMyCards().add(new Card("axe","weapon"));
+		c1.getMyCards().add(new Card("Bathroom", "room"));
+		c1.getMyCards().add(new Card("Library", "room"));
+		ComputerPlayer c2 = new ComputerPlayer("Matt", 19, 8,"magenta");
+		c2.getMyCards().add(new Card("gun","weapon"));
+		c2.getMyCards().add(new Card("Gett","person"));
+		c2.getMyCards().add(new Card("ComputerGame Room","room"));
+		HumanPlayer h1 = new HumanPlayer("Eddie",5,6,"yellow");
+		h1.getMyCards().add(new Card("pillow","weapon"));
+		h1.getMyCards().add(new Card("Thomas","person"));
+		h1.getMyCards().add(new Card("Liz","person"));
+		
+		ArrayList<Player> players = new ArrayList<Player>();
+		players.add(c1);
+		players.add(c2);
+		players.add(h1);
+		
+		
+		//Suggestion no one can disprove returns null
+		
+		assertTrue(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "textbook"), new Solution("Connor","Master Bedroom","textbook"), c2, players) == null);
+		
+		
+		//Suggestion only accusing player can disprove returns null
+		assertTrue(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "textbook"), new Solution("Connor","Master Bedroom","textbook"), c2, players) == null);
+		
+		
+		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		assertEquals(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "pillow"), new Solution("Connor","Master Bedroom","textbook"), c2, players), new Card("pillow","weapon"));
+		
+		//Suggestion only human can disprove, but human is accuser, returns null
+		assertTrue(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "pillow"), new Solution("Connor","Master Bedroom","textbook"), h1, players) == null);
+		
+		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+		assertEquals(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "axe"), new Solution("Connor","Master Bedroom","textbook"), h1, players), new Card("axe","weapon"));
+		
+		
+		//Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+		assertEquals(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "pillow"), new Solution("Connor","Master Bedroom","textbook"), c1, players), new Card("Gett","person"));
+		
+		
+		
 	}
 
 

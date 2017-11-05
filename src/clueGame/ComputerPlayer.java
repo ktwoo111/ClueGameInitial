@@ -91,11 +91,7 @@ public class ComputerPlayer extends Player {
 
 		remainingCards.removeAll(super.getMyCards());
 		remainingCards.removeAll(super.getSeenCards());
-		System.out.println(remainingCards.size());
-
-		System.out.println(super.getSeenCards().size());
-		System.out.println(super.getMyCards().size());
-		System.out.println(remainingCards.size());
+	
 
 
 		ArrayList<Card> people = new ArrayList<Card>();
