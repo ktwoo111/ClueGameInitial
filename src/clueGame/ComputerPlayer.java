@@ -22,11 +22,26 @@ public class ComputerPlayer extends Player {
 
 	@Override
 	public Card disproveSuggestion(Solution suggestion) {
-		// TODO Auto-generated method stub
-		return null;
-	
-	
-	
+		ArrayList<Card> matchingCards = new ArrayList<Card>();
+		for(Card c: super.getMyCards()){
+			if(c.getCardName().equals(suggestion.person) || c.getCardName().equals(suggestion.room) || c.getCardName().equals(suggestion.weapon)){
+				matchingCards.add(c);
+			}
+
+		}
+
+		if(matchingCards.size() == 1){
+			return matchingCards.get(0);
+		}
+		else if (matchingCards.size() > 1){
+			Random rand = new Random();
+			return matchingCards.get(rand.nextInt(matchingCards.size()));
+		}
+		else{
+			return null;
+		}	
+
+
 	}
 
 
@@ -60,29 +75,29 @@ public class ComputerPlayer extends Player {
 
 		//TODO
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param cards
 	 * @param currentRoom get currentRoom by getting getCellAt for player's location, get initial, and then get room string value by accessing legend
 	 * @return
 	 */
-	
+
 	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){ 	
-		
-		
+
+
 		ArrayList<Card> remainingCards = cards;
-		
+
 		remainingCards.removeAll(super.getMyCards());
 		remainingCards.removeAll(super.getSeenCards());
 		System.out.println(remainingCards.size());
-		
+
 		System.out.println(super.getSeenCards().size());
 		System.out.println(super.getMyCards().size());
 		System.out.println(remainingCards.size());
-		
-		
+
+
 		ArrayList<Card> people = new ArrayList<Card>();
 		ArrayList<Card> weapons = new ArrayList<Card>();
 
@@ -127,7 +142,7 @@ public class ComputerPlayer extends Player {
 		test.getSeenCards().add(new Card("Connor","person"));
 		test.getSeenCards().add(new Card("Eddie","person"));
 		test.getSeenCards().add(new Card("Matt","person"));
-		
+
 		test.getMyCards().add(new Card("Thomas","person"));
 
 		test.createSuggestion(board.getCards(), "Library");
