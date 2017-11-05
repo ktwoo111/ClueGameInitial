@@ -20,29 +20,6 @@ public class ComputerPlayer extends Player {
 		previousLocation = 'Z'; // just a random non room character
 	}
 
-	@Override
-	public Card disproveSuggestion(Solution suggestion) {
-		ArrayList<Card> matchingCards = new ArrayList<Card>();
-		for(Card c: super.getMyCards()){
-			if(c.getCardName().equals(suggestion.person) || c.getCardName().equals(suggestion.room) || c.getCardName().equals(suggestion.weapon)){
-				matchingCards.add(c);
-			}
-
-		}
-
-		if(matchingCards.size() == 1){
-			return matchingCards.get(0);
-		}
-		else if (matchingCards.size() > 1){
-			Random rand = new Random();
-			return matchingCards.get(rand.nextInt(matchingCards.size()));
-		}
-		else{
-			return null;
-		}	
-
-
-	}
 
 
 	public BoardCell pickLocation(Set<BoardCell> targets, char currentLocation){

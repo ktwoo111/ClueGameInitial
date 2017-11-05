@@ -52,7 +52,7 @@ public class Board {
 		theAnswer = new Solution("Matt", "Dining Room", "axe");
 		legend = new HashMap<Character,String>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		
+
 		try {
 			loadRoomConfig();
 		} catch (BadConfigFormatException e1) {
@@ -82,7 +82,7 @@ public class Board {
 	}
 	private void setSolution() {
 		// TODO MAYBE NEED THIS OR NOT
-		
+
 	}
 	/**
 	 * Loads the rooms for the board
@@ -296,13 +296,13 @@ public class Board {
 	private void shuffleAndDealCards() {
 		long seed = System.nanoTime();
 		Collections.shuffle(cards, new Random(seed));
-		
+
 		double numCards = cards.size();
 		double numPlayers = players.size();
 		int mostNum = (int)Math.floor(numCards/numPlayers);
 		int lastNum = (int)Math.ceil(numCards/numPlayers);
-		
-	
+
+
 		int counter = 0;
 		for(int i = 0; i < players.size(); i++){
 			if(i  < numCards%numPlayers){
@@ -313,7 +313,7 @@ public class Board {
 			}
 			else {
 				for(int j = 0; j < mostNum; j++){
-				
+
 					players.get(i).getMyCards().add(cards.get(counter));
 					counter++;			
 				}
@@ -366,7 +366,7 @@ public class Board {
 	 * @param file the file that contains the card information
 	 */
 	private void loadCardConfigFile(String file){
-		 	
+
 		cards = new ArrayList<Card>();
 		//WEAPONS
 		try {
@@ -388,16 +388,16 @@ public class Board {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		//ROOM from legend arraylist
 		Set<Character> keys = legend.keySet();
-		
+
 		for(Character c : keys){
 			if(!(legend.get(c).equals("Closet") || legend.get(c).equals("Walkway"))){ //closet and walkway are not rooms
-			cards.add(new Card(legend.get(c),"room"));
+				cards.add(new Card(legend.get(c),"room"));
 			}
 		}
-		
+
 		//PEOPLE
 		for(Player p : players){
 			cards.add(new Card(p.getPlayerName(),"person"));
@@ -407,27 +407,58 @@ public class Board {
 		//TODO
 
 	}
-	public Card handleSuggestion(Solution suggestion, Solution theAnswer, Player accuser, ArrayList<Player> players){
-		
-		
-		
-		//TODO
-		return null;
+	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> playersList){
+		ArrayList<Card> disproveCardsComputer = new ArrayList<Card>();
+		ArrayList<Card> disproveCardsHuman = new ArrayList<Card>();
+		boolean playerHasCard = false;
+		boolean computerHasCard = false;
+		for(Player p : playersList){
+			if (p == playersList.get(0)) {
+				Card playerCard = p.disproveSuggestion(suggestion);
+				if (!p.equals(accuser)){
+					disproveCardsHuman.add(playerCard);
+					playerHasCard = true;
+				}
+			}
+			else {
+				Card card = p.disproveSuggestion(suggestion);
+				if (card != null && !p.equals(accuser)) {
+					disproveCardsComputer.add(card);
+					computerHasCard = true;
+				}
+			}
+
+		}
+		if (disproveCardsHuman.size() == 0 && disproveCardsComputer.size() == 0) {
+			return null;
+		}
+		else if (playerHasCard && !computerHasCard) {
+			return disproveCardsHuman.get(0);
+		}
+		else if  (!playerHasCard && computerHasCard){
+			return disproveCardsComputer.get(0);
+		}
+		else if (playerHasCard && computerHasCard) {
+			return disproveCardsComputer.get(0);
+		}
+		else {
+			return null;
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param accusation -> input should be (new Solution(person, room, weapon); create the argument on the spot
 	 * @return
 	 */
 	public boolean checkAccusation(Solution accusation){
-		
+
 		if(accusation.equals(theAnswer)){
 			return true;
 		}
 		else {
 			return false;
-			
+
 		}
 	}
 
@@ -437,7 +468,7 @@ public class Board {
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	
+
 
 	public ArrayList<Card> getCards() {
 		return cards;
@@ -446,11 +477,11 @@ public class Board {
 		return theAnswer;
 	}
 	public static void main(String args[]){
-		
+
 		Board board = Board.getInstance();
 		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");		
 		board.initialize();
-       
+
 		ComputerPlayer compPlayer = new ComputerPlayer("Thomas", 16, 17,"black");
 		int row = compPlayer.getRow(); // 4th player which is computer
 		int column = compPlayer.getColumn();
@@ -479,7 +510,7 @@ public class Board {
 		System.out.println(optionTwo);
 		System.out.println(optionThree);
 		System.out.println(optionFour);
-		
+
 
 	}
 

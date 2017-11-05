@@ -8,10 +8,4 @@ public class HumanPlayer extends Player {
 		super(playerName,row,column,color);
 	}
 
-	@Override
-	public Card disproveSuggestion(Solution suggestion) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

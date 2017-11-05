@@ -211,32 +211,32 @@ public class gameActionTests {
 		h1.getMyCards().add(new Card("Liz","person"));
 		
 		ArrayList<Player> players = new ArrayList<Player>();
+		players.add(h1);
 		players.add(c1);
 		players.add(c2);
-		players.add(h1);
 		
 		
 		//Suggestion no one can disprove returns null
 		
-		assertTrue(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "textbook"), new Solution("Connor","Master Bedroom","textbook"), c2, players) == null);
+		assertTrue(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "textbook"), c2, players) == null);
 		
 		
 		//Suggestion only accusing player can disprove returns null
-		assertTrue(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "textbook"), new Solution("Connor","Master Bedroom","textbook"), c2, players) == null);
+		assertTrue(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "textbook"), c2, players) == null);
 		
 		
 		//Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
-		assertEquals(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "pillow"), new Solution("Connor","Master Bedroom","textbook"), c2, players), new Card("pillow","weapon"));
+		assertEquals(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "pillow"), c2, players), new Card("pillow","weapon"));
 		
 		//Suggestion only human can disprove, but human is accuser, returns null
-		assertTrue(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "pillow"), new Solution("Connor","Master Bedroom","textbook"), h1, players) == null);
+		assertTrue(board.handleSuggestion(new Solution("Connor", "Guest Bedroom", "pillow"),  h1, players) == null);
 		
 		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
-		assertEquals(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "axe"), new Solution("Connor","Master Bedroom","textbook"), h1, players), new Card("axe","weapon"));
+		assertEquals(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "axe"),  h1, players), new Card("axe","weapon"));
 		
 		
 		//Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
-		assertEquals(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "pillow"), new Solution("Connor","Master Bedroom","textbook"), c1, players), new Card("Gett","person"));
+		assertEquals(board.handleSuggestion(new Solution("Gett", "Guest Bedroom", "pillow"), c1, players), new Card("Gett","person"));
 		
 		
 		
