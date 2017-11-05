@@ -411,6 +411,12 @@ public class Board {
 		//TODO
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param accusation -> input should be (new Solution(person, room, weapon); create the argument on the spot
+	 * @return
+	 */
 	public boolean checkAccusation(Solution accusation){
 		
 		if(accusation.equals(theAnswer)){

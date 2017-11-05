@@ -24,6 +24,9 @@ public class ComputerPlayer extends Player {
 	public Card disproveSuggestion(Solution suggestion) {
 		// TODO Auto-generated method stub
 		return null;
+	
+	
+	
 	}
 
 
@@ -57,9 +60,18 @@ public class ComputerPlayer extends Player {
 
 		//TODO
 	}
-	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){ //get currentRoom by accessing legend		
+	
+	
+	/**
+	 * 
+	 * @param cards
+	 * @param currentRoom get currentRoom by getting getCellAt for player's location, get initial, and then get room string value by accessing legend
+	 * @return
+	 */
+	
+	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){ 	
 		
-		//TODO 11/2/2017 LET'S DO THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
 		ArrayList<Card> remainingCards = cards;
 		
 		remainingCards.removeAll(super.getMyCards());

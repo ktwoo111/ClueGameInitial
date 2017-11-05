@@ -154,7 +154,43 @@ public class gameActionTests {
 	}
 	@Test
 	public void disproveSuggestiontest() {
-		assertTrue(true);
+		//Test only one matching card.
+		ComputerPlayer test = new ComputerPlayer("Thomas", 19, 8,"black");
+		test.getMyCards().add(new Card("axe","weapon"));
+		test.getMyCards().add(new Card("Gett","person"));
+		test.getMyCards().add(new Card("Connor","person"));
+		Card card = test.disproveSuggestion(new Solution("Gett","ComputerGame Room", "wire"));
+		assertEquals("Gett", card.getCardName());
+		
+		//Test if more than one matching card
+		ComputerPlayer testTwo = new ComputerPlayer("Thomas", 19, 8,"black");
+		testTwo.getMyCards().add(new Card("wire","weapon"));
+		testTwo.getMyCards().add(new Card("Gett","person"));
+		testTwo.getMyCards().add(new Card("Connor","person"));
+		
+		int countGett = 0;
+		int countWire = 0;
+		
+		for (int i = 0; i < 100; i++) {
+			Card cardTwo = testTwo.disproveSuggestion(new Solution("Gett","ComputerGame Room", "wire"));
+			if (cardTwo.getCardName() == "Gett") {
+				countGett++;
+			}
+			else if (cardTwo.getCardName() == "wire") {
+				countWire++;
+			}
+		}
+		
+		assertTrue(countGett > 0 && countWire > 0);
+		
+		//If player has no matching card null is returned
+		ComputerPlayer testThree = new ComputerPlayer("Thomas", 19, 8,"black");
+		testThree.getMyCards().add(new Card("wire","weapon"));
+		testThree.getMyCards().add(new Card("Gett","person"));
+		testThree.getMyCards().add(new Card("Connor","person"));
+		Card cardThree = testTwo.disproveSuggestion(new Solution("Eddie","ComputerGame Room", "gun"));
+		
+		assertTrue(cardThree == null);
 	}
 	@Test
 	public void handlingSuggestiontest() {
