@@ -407,6 +407,13 @@ public class Board {
 		//TODO
 
 	}
+	/**
+	 * 
+	 * @param suggestion the suggestion being handled
+	 * @param accuser the person that is making the suggestion
+	 * @param playersList the list of player, needed for tests
+	 * @return returns either null or the card that disproves the suggestion
+	 */
 	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> playersList){
 		ArrayList<Card> disproveCardsComputer = new ArrayList<Card>();
 		ArrayList<Card> disproveCardsHuman = new ArrayList<Card>();
