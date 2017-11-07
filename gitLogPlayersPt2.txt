@@ -1,3 +1,69 @@
+commit d325fff632a41025e98f339cf52402279a26e767
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sun Nov 5 12:29:13 2017 -0700
+
+    javadoc comments for handle suggestion
+
+commit 281dc70f71bc8e26d53b21216a3f70184d430706
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sun Nov 5 12:27:56 2017 -0700
+
+    handling suggestion successful tests
+
+commit d92ffcaaf15f03015988e5e534a1edea707d40cb
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sun Nov 5 11:59:25 2017 -0700
+
+    failing handle suggestion test
+
+commit e05c275535ebdf553b693c07e45f56e00d3daf2a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sun Nov 5 11:34:56 2017 -0700
+
+    working disproving suggestion test.
+
+commit 00ac81abb4239e5acfb725d5d6467d06e5be096d
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Sun Nov 5 11:28:47 2017 -0700
+
+    failing disproveSuggetsion tests
+
+commit 0100a6e507d5033e48ef95e8549510ef8edd35b9
+Author: Taewoo Kim <dkdldzk@gmail.com>
+Date:   Thu Nov 2 17:08:30 2017 -0600
+
+    suggestion test working.
+
+commit e15c12916be2cb0053c45be16872e122c44d1062
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 16:29:32 2017 -0600
+
+    still trying to do createSuggestion.
+
+commit e6242c863e6eb4fb1ec56172bf4eb8adae811f39
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 15:49:03 2017 -0600
+
+    failing suggestionTest.
+
+commit 5759edbc91ae2f53957a3c7d4763e9533bb3e958
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 15:16:21 2017 -0600
+
+    failing check accusation tests
+
+commit 075406bc78e4bf241702bebfb5d7bc045a607e8a
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 15:00:38 2017 -0600
+
+    made the pick location tests work
+
+commit 0ae65d1a786df154d8d9a4912d697157b914fae8
+Author: Taewoo Kim <tkim@mines.edu>
+Date:   Thu Nov 2 14:20:30 2017 -0600
+
+    Failing pickTarget tests made
+
 commit 8442136564e384f6a0ae9050ea9b244fa2bd9627
 Author: Taewoo Kim <tkim@mines.edu>
 Date:   Thu Nov 2 12:04:11 2017 -0600
