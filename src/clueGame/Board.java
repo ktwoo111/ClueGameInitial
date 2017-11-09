@@ -4,6 +4,7 @@
  */
 package clueGame;
 
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,9 +18,15 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JPanel;
+
 import clueGame.BoardCell;
 
 public class Board {
+	/**
+	 * 
+	 */
+	
 	private int numRows;
 	private int numColumns;
 	public static final int MAX_BOARD_SIZE = 50; //change later later!!!!!!!!!
@@ -32,6 +39,7 @@ public class Board {
 	private ArrayList<Player> players; // arraylist to put in human and computer players
 	private ArrayList<Card> cards; // array list of all the cards
 	private Solution theAnswer;
+
 
 
 	// variable used for singleton pattern
