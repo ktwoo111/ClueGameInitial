@@ -1,3 +1,7 @@
+/**
+ * @author John Baker and Taewoo Kim
+ * Class for the control gui
+ */
 package clueGame;
 
 import java.awt.BorderLayout;
@@ -14,6 +18,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class ControlGUI extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 	private JTextField whoseTurnText;
 	private JTextField dieField;
 	private JTextField guessField;
@@ -26,6 +32,7 @@ public class ControlGUI extends JPanel {
 		
 	
 		setLayout(new GridLayout(2,1));
+		setSize(700,200);
 		add(createTopPanel(),BorderLayout.CENTER);
 		add(createBottomPanel(),BorderLayout.CENTER);
 		
@@ -63,9 +70,9 @@ public class ControlGUI extends JPanel {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1,2));
 		JButton nextPlayerButton = new JButton("Next player");
-		nextPlayerButton.setPreferredSize(new Dimension(200,100));
+		nextPlayerButton.setPreferredSize(new Dimension(200,50));
 		JButton accusationButton = new JButton("Make an accusation");
-		accusationButton.setPreferredSize(new Dimension(200,100));
+		accusationButton.setPreferredSize(new Dimension(200,50));
 		buttonPanel.add(nextPlayerButton,BorderLayout.WEST);
 		buttonPanel.add(accusationButton,BorderLayout.EAST);
 		
@@ -106,23 +113,6 @@ public class ControlGUI extends JPanel {
 		bottomPanel.add(bottomPanelGuessResult);
 		
 		return bottomPanel;
-	}
-	public static void main(String args[]){
-		JFrame frame = new JFrame();
-		frame.setTitle("Clue Game");
-		frame.setSize(700,300); // width, height
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ControlGUI gui = new ControlGUI();
-		frame.add(gui,BorderLayout.CENTER);
-		
-		
-		
-		
-		frame.setVisible(true);
-		
-		
-		
-		
 	}
 
 }

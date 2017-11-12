@@ -2,5 +2,5 @@ Gett, 5, 7, yellow
 Connor, 9, 6, white
 Eddie, 16, 16, magenta
 Thomas, 16, 17, black
-Matt, 12, 15, pink
+Matt, 12, 17, pink
 Liz, 5, 3, orange
