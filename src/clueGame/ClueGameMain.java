@@ -59,9 +59,24 @@ public class ClueGameMain extends JFrame {
 	private JMenu createFileMenu(){
 		JMenu menu = new JMenu("File");
 		menu.add(createDetectiveNotes());
+		menu.add(createExit());
 		return menu;
 		
 	}
+	
+	private JMenuItem createExit(){
+		JMenuItem item = new JMenuItem("Exit");
+		class Exit implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);
+				
+			}
+			
+		}
+		item.addActionListener(new Exit());
+		return item;
+	}
+	
 	
 	private JMenuItem createDetectiveNotes(){
 		JMenuItem item = new JMenuItem("Detective Notes");
