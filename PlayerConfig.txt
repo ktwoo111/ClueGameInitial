@@ -1,4 +1,4 @@
-Gett, 5, 7, yellow
+Gett, 5, 7, blue
 Connor, 9, 6, white
 Eddie, 16, 16, magenta
 Thomas, 16, 17, black
