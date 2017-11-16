@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class ClueGameMain extends JFrame {
 	
@@ -28,30 +29,38 @@ public class ClueGameMain extends JFrame {
 	
 	
 	public ClueGameMain(){
+		
 		Board board = Board.getInstance();
 		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");
 		board.initialize();
 		
 		
-	
+		setResizable(false);
 		setTitle("Clue Game");
-		setSize(700,850); // width, height
+		setSize(850,900); // width, height
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ClueBoardGUI gui = new ClueBoardGUI();
+		
+		MyCardsGUI cardsGui = new MyCardsGUI();
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		
-		add(gui);	
-		setResizable(false);
+		add(gui,BorderLayout.CENTER);	
+		add(cardsGui,BorderLayout.EAST);
+		
 		
 		ControlGUI bottomGui = new ControlGUI();
 		add(bottomGui,BorderLayout.SOUTH);
 		
 		setVisible(true);
 		repaint();
+		
+		JOptionPane popUp = new JOptionPane();
+		popUp.showMessageDialog(this,"You are "+ board.getPlayers().get(0).getPlayerName()+ " press Next Player to begin play","Welcome to Clue, your poor soul", JOptionPane.INFORMATION_MESSAGE);
+		
 		
 	}
 	
