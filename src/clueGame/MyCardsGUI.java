@@ -1,3 +1,7 @@
+/**
+ * @author John Baker and Taewoo Kim
+ * Class for making the players cards panel
+ */
 package clueGame;
 
 import java.awt.BorderLayout;
@@ -24,6 +28,10 @@ public class MyCardsGUI extends JPanel {
 		add(CreatePanel());
 	}
 
+	/**
+	 * method to show the players cards
+	 * @return JPanel containing the players cards
+	 */
 	private JPanel CreatePanel() {
 		JPanel myCards = new JPanel();
 		JPanel people = new JPanel();
@@ -95,24 +103,6 @@ public class MyCardsGUI extends JPanel {
 		myCards.setSize(new Dimension(1000,850));
 
 		return myCards;
-	}
-
-	public static void main(String args[]){
-		Board board = Board.getInstance();
-		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");
-		board.initialize();
-		JFrame test = new JFrame();
-		test.setTitle("Clue Game");
-		test.setSize(700,850); // width, height
-
-		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		MyCardsGUI heil = new MyCardsGUI();
-		test.add(heil);
-		test.setVisible(true);
-
-
-
-
 	}
 
 }

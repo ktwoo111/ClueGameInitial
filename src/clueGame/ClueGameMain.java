@@ -58,8 +58,7 @@ public class ClueGameMain extends JFrame {
 		setVisible(true);
 		repaint();
 		
-		JOptionPane popUp = new JOptionPane();
-		popUp.showMessageDialog(this,"You are "+ board.getPlayers().get(0).getPlayerName()+ " press Next Player to begin play","Welcome to Clue, your poor soul", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this,"You are "+ board.getPlayers().get(0).getPlayerName()+ " press Next Player to begin play","Welcome to Clue, your poor soul", JOptionPane.INFORMATION_MESSAGE);
 		
 		
 	}
