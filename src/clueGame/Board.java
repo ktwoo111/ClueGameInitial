@@ -38,7 +38,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private int currentPlayer = 0;
 	private int dieVal = 0;
-	private BoardCell selectedLocation = new BoardCell(0,0,"Q");
+	private BoardCell selectedLocation; //11/21/2017: not initializing this to new BoardCell(0,0,"Q") seems to work
 	private ArrayList<Player> players; // arraylist to put in human and computer players
 	private ArrayList<Card> cards; // array list of all the cards
 	private Solution theAnswer;
@@ -258,7 +258,6 @@ public class Board {
 				visited.add(cell);
 				if(pathLength == 1 || cell.isDoorway()){
 					targets.add(cell);
-
 				}
 				else {
 					findAllTargets(cell, pathLength-1, visited, targets);
@@ -492,6 +491,7 @@ public class Board {
 
 	}
 
+	
 	public void makeMove(){ // for the players
 		
 		//reassigns values for targets Array list
@@ -504,8 +504,7 @@ public class Board {
 		}
 		else {
 			//gets the place where computer player wants to go
-			BoardCell destination = new BoardCell(0,0,"Q");
-			destination = players.get(currentPlayer).pickLocation(targets, getCellAt(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn()).getInitial());
+			BoardCell destination = players.get(currentPlayer).pickLocation(targets, getCellAt(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn()).getInitial());
 			//assigns new current location with destination's row and columns
 			players.get(currentPlayer).changeCurrentLocation(destination.getRow(),destination.getColumn());
 		}
@@ -520,6 +519,7 @@ public class Board {
 		}
 
 	}
+	
 
 
 	/////////////////////////////////////////////////below stuff is purely for testing
@@ -542,21 +542,25 @@ public class Board {
 	public int getDieVal() {
 		return dieVal;
 	}
-	public static void main(String args[]){
-
-	}
+	
+	
+	
 	public boolean isPlayerMoved() {
 		return playerMoved;
 	}
 	public void setPlayerMoved(boolean playerMoved) {
 		this.playerMoved = playerMoved;
 	}
+	
+	
 	public BoardCell getSelectedLocation() {
 		return selectedLocation;
 	}
 	public void setSelectedLocation(BoardCell selectedLocation) {
 		this.selectedLocation = selectedLocation;
 	}
+	
+	
 
 
 

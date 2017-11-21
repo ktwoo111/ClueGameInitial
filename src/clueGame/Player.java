@@ -73,7 +73,7 @@ public class Player {
 	public BoardCell pickLocation(Set<BoardCell> targets, char currentLocation){
 		
 		
-		return new BoardCell(0,0,"Q");
+		return null;
 	}
 	
 	

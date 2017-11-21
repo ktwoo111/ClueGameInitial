@@ -30,7 +30,7 @@ public class ClueBoardGUI extends JPanel{
 		}
 		
 	}
-	
+	/*
 	private class selectionListener implements MouseListener{
 
 		@Override
@@ -70,6 +70,7 @@ public class ClueBoardGUI extends JPanel{
 			
 		}
 	}
+	*/
 	
 		
 	

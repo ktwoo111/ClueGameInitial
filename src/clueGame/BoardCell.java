@@ -175,11 +175,12 @@ public class BoardCell {
 			for(BoardCell c : board.getTargets()){
 				if(c.getRow() == row && c.getColumn() == column){
 					g.setColor(Color.white);
-					g.drawRect(column*BOX_DIMENSION, row*BOX_DIMENSION, BOX_DIMENSION, BOX_DIMENSION);			
+					g.fillRect(column*BOX_DIMENSION, row*BOX_DIMENSION, BOX_DIMENSION, BOX_DIMENSION);			
 				}
 
 			}
 		}
+		
 	}
 
 

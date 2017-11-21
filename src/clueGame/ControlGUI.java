@@ -76,6 +76,7 @@ public class ControlGUI extends JPanel {
 		buttonPanel.setLayout(new GridLayout(1,2));
 		JButton nextPlayerButton = new JButton("Next player");
 		nextPlayerButton.setPreferredSize(new Dimension(200,50));
+		
 		class MakeMove implements ActionListener{
 			public void actionPerformed(ActionEvent e){
 				if (board.getCurrentPlayer() == 0 && !board.isPlayerMoved()) {
@@ -89,6 +90,7 @@ public class ControlGUI extends JPanel {
 		}
 		nextPlayerButton.addActionListener(new MakeMove());
 		
+	
 		JButton accusationButton = new JButton("Make an accusation");
 		accusationButton.setPreferredSize(new Dimension(200,50));
 		buttonPanel.add(nextPlayerButton,BorderLayout.WEST);
