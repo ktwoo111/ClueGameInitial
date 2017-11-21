@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 
 import javax.swing.JLabel;
@@ -58,7 +60,7 @@ public class BoardCell {
 		}
 
 	}
-	
+
 	@Override
 	public String toString() {
 		return "BoardCell [row=" + row + ", column=" + column + "]";
@@ -155,23 +157,42 @@ public class BoardCell {
 			}
 			else{
 
-			g.setColor(Color.BLUE);
-			g.drawString(board.getLegend().get(board.getCellAt(row, column).getInitial()),column*BoardCell.BOX_DIMENSION,row*BoardCell.BOX_DIMENSION);	
+				g.setColor(Color.BLUE);
+				g.drawString(board.getLegend().get(board.getCellAt(row, column).getInitial()),column*BoardCell.BOX_DIMENSION,row*BoardCell.BOX_DIMENSION);	
 			}
 		}
-		
+
+
 		for (Player p : board.getPlayers()){
 			if(p.getRow() == row && p.getColumn() == column){
 				g.setColor(p.getColor());
 				g.fillOval(column*BoardCell.BOX_DIMENSION,row*BoardCell.BOX_DIMENSION,BOX_DIMENSION,BOX_DIMENSION);
 			}
-			
+
 		}
-		
-		
-		
-		
+
+		if(board.getCurrentPlayer() == 0){
+			for(BoardCell c : board.getTargets()){
+				if(c.getRow() == row && c.getColumn() == column){
+					g.setColor(Color.white);
+					g.drawRect(column*BOX_DIMENSION, row*BOX_DIMENSION, BOX_DIMENSION, BOX_DIMENSION);			
+				}
+
+			}
+		}
 	}
+
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+
+
 
 
 

@@ -21,7 +21,7 @@ public class ComputerPlayer extends Player {
 	}
 
 
-
+	@Override
 	public BoardCell pickLocation(Set<BoardCell> targets, char currentLocation){
 		ArrayList<BoardCell> targetsList = new ArrayList<BoardCell>(targets);
 		if(currentLocation != 'W' && currentLocation != 'X'){

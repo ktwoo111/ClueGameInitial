@@ -26,7 +26,7 @@ public class Board {
 	/**
 	 * 
 	 */
-	
+
 	private int numRows;
 	private int numColumns;
 	public static final int MAX_BOARD_SIZE = 50; //change later later!!!!!!!!!
@@ -36,9 +36,13 @@ public class Board {
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private Set<BoardCell> targets;
+	private int currentPlayer = 0;
+	private int dieVal = 0;
+	private BoardCell selectedLocation = new BoardCell(0,0,"Q");
 	private ArrayList<Player> players; // arraylist to put in human and computer players
 	private ArrayList<Card> cards; // array list of all the cards
 	private Solution theAnswer;
+	private boolean playerMoved = false;
 
 
 
@@ -86,6 +90,10 @@ public class Board {
 		shuffleAndDealCards();
 		setSolution();
 		calcAdjacencies();
+
+		//rolling die and calctarget to just to start off the game
+		rollDie();
+		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
 
 	}
 	private void setSolution() {
@@ -478,6 +486,41 @@ public class Board {
 	}
 
 
+	private void rollDie(){
+		Random rand = new Random();
+		dieVal = rand.nextInt(6)+1;
+
+	}
+
+	public void makeMove(){ // for the players
+		
+		//reassigns values for targets Array list
+		rollDie();
+		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
+
+		if(currentPlayer == 0){
+			//human shit
+
+		}
+		else {
+			//gets the place where computer player wants to go
+			BoardCell destination = new BoardCell(0,0,"Q");
+			destination = players.get(currentPlayer).pickLocation(targets, getCellAt(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn()).getInitial());
+			//assigns new current location with destination's row and columns
+			players.get(currentPlayer).changeCurrentLocation(destination.getRow(),destination.getColumn());
+		}
+
+		//TODO: pick location from calculated location
+		//TODO: Move to that location
+		//TODO: handle suggestions and accusations
+
+		currentPlayer++;
+		if(currentPlayer == players.size()){
+			currentPlayer = 0;
+		}
+
+	}
+
 
 	/////////////////////////////////////////////////below stuff is purely for testing
 	public ArrayList<Player> getPlayers() {
@@ -491,8 +534,28 @@ public class Board {
 	public Solution getAnswer() {
 		return theAnswer;
 	}
+
+
+	public int getCurrentPlayer() {
+		return currentPlayer;
+	}
+	public int getDieVal() {
+		return dieVal;
+	}
 	public static void main(String args[]){
-		
+
+	}
+	public boolean isPlayerMoved() {
+		return playerMoved;
+	}
+	public void setPlayerMoved(boolean playerMoved) {
+		this.playerMoved = playerMoved;
+	}
+	public BoardCell getSelectedLocation() {
+		return selectedLocation;
+	}
+	public void setSelectedLocation(BoardCell selectedLocation) {
+		this.selectedLocation = selectedLocation;
 	}
 
 

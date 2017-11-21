@@ -24,6 +24,8 @@ public class Player {
 		seenCards = new ArrayList<Card>();
 	}
 
+	
+	
 	private Color convertColor(String strColor){
 		Color color;
 		try{
@@ -34,6 +36,12 @@ public class Player {
 		catch(Exception e)
 		{ color = null;}
 		return color;
+		
+	}
+	
+	public void changeCurrentLocation(int i , int j){
+		row = i;
+		column = j;
 		
 	}
 	
@@ -60,6 +68,12 @@ public class Player {
 		}	
 		
 		
+	}
+	
+	public BoardCell pickLocation(Set<BoardCell> targets, char currentLocation){
+		
+		
+		return new BoardCell(0,0,"Q");
 	}
 	
 	
