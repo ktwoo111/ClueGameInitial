@@ -85,6 +85,9 @@ public class ControlGUI extends JPanel {
 				}
 				else {
 					board.makeMove();
+					whoseTurnText.setText(board.getPlayers().get(board.getCurrentPlayer()).getPlayerName());
+					dieField.setText(Integer.toString(board.getDieVal()));
+					repaint();
 					if (board.getCurrentPlayer() == 0) {
 						board.getCellAt(board.getSelectedLocation().getRow(),board.getSelectedLocation().getColumn()).setSelected(false);
 					}
