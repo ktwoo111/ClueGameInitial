@@ -39,6 +39,7 @@ public class ControlGUI extends JPanel {
 		setSize(700,200);
 		add(createTopPanel(),BorderLayout.CENTER);
 		add(createBottomPanel(),BorderLayout.CENTER);
+		repaint();
 		
 		
 
@@ -79,11 +80,14 @@ public class ControlGUI extends JPanel {
 		
 		class MakeMove implements ActionListener{
 			public void actionPerformed(ActionEvent e){
-				if (board.getCurrentPlayer() == 0 && !board.isPlayerMoved()) {
+				if (board.getCurrentPlayer() == 0 && !board.isTargetSelected()) {
 					JOptionPane.showMessageDialog(null, "You must make a move before hitting Next Player", "Move First!", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
 					board.makeMove();
+					if (board.getCurrentPlayer() == 0) {
+						board.getCellAt(board.getSelectedLocation().getRow(),board.getSelectedLocation().getColumn()).setSelected(false);
+					}
 				}
 			}
 			

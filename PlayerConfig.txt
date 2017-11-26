@@ -1,5 +1,5 @@
 Gett, 5, 7, blue
-Connor, 9, 6, white
+Connor, 9, 6, red
 Eddie, 16, 16, magenta
 Thomas, 16, 17, black
 Matt, 12, 17, pink

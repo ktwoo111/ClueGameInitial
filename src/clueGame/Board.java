@@ -42,7 +42,7 @@ public class Board {
 	private ArrayList<Player> players; // arraylist to put in human and computer players
 	private ArrayList<Card> cards; // array list of all the cards
 	private Solution theAnswer;
-	private boolean playerMoved = false;
+	private boolean targetSelected = false;
 
 
 
@@ -496,10 +496,11 @@ public class Board {
 		
 		//reassigns values for targets Array list
 		rollDie();
-		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
+		
 
 		if(currentPlayer == 0){
-			//human shit
+			players.get(currentPlayer).changeCurrentLocation(selectedLocation.getRow(),selectedLocation.getColumn());
+			targetSelected = false;
 
 		}
 		else {
@@ -517,6 +518,7 @@ public class Board {
 		if(currentPlayer == players.size()){
 			currentPlayer = 0;
 		}
+		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
 
 	}
 	
@@ -544,20 +546,18 @@ public class Board {
 	}
 	
 	
-	
-	public boolean isPlayerMoved() {
-		return playerMoved;
-	}
-	public void setPlayerMoved(boolean playerMoved) {
-		this.playerMoved = playerMoved;
-	}
-	
-	
+
 	public BoardCell getSelectedLocation() {
 		return selectedLocation;
 	}
 	public void setSelectedLocation(BoardCell selectedLocation) {
 		this.selectedLocation = selectedLocation;
+	}
+	public boolean isTargetSelected() {
+		return targetSelected;
+	}
+	public void setTargetSelected(boolean targetSelected) {
+		this.targetSelected = targetSelected;
 	}
 	
 	

@@ -17,9 +17,14 @@ public class ClueBoardGUI extends JPanel{
 	private static Board board = Board.getInstance();
 	private static final long serialVersionUID = 1L;
 	JLabel roomText; // = new JLabel("Guess");	
+    private BoardCell oldLocation = new BoardCell(0,0,"W");
+	
+	public ClueBoardGUI(){
+		addMouseListener(new selectionListener());
+		
+	}
 	
 	
-
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -28,9 +33,9 @@ public class ClueBoardGUI extends JPanel{
 				board.getCellAt(i, j).draw(g);
 			}
 		}
-		
+		repaint();
 	}
-	/*
+	
 	private class selectionListener implements MouseListener{
 
 		@Override
@@ -38,7 +43,11 @@ public class ClueBoardGUI extends JPanel{
 			int col = (int) Math.floor(e.getX()/BoardCell.BOX_DIMENSION);
 			int row = (int) Math.floor(e.getY()/BoardCell.BOX_DIMENSION);
 			if(board.getCurrentPlayer() == 0 && board.getTargets().contains(board.getCellAt(row, col))) {
+				oldLocation.setSelected(false);
 				board.setSelectedLocation(board.getCellAt(row, col));
+				board.getCellAt(row, col).setSelected(true);
+				oldLocation = board.getCellAt(row, col);
+				board.setTargetSelected(true); //player clicked and target is selected.
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "You must make a move before hitting Next Player", "Move First!", JOptionPane.INFORMATION_MESSAGE);
@@ -70,7 +79,7 @@ public class ClueBoardGUI extends JPanel{
 			
 		}
 	}
-	*/
+	
 	
 		
 	

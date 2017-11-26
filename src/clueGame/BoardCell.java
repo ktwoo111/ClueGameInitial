@@ -20,6 +20,7 @@ public class BoardCell {
 	private char initial;
 	private boolean textField;
 	private DoorDirection doorDirection;
+	private boolean isSelected = false;
 
 
 	public BoardCell(int row, int column, String labels) {
@@ -174,8 +175,13 @@ public class BoardCell {
 		if(board.getCurrentPlayer() == 0){
 			for(BoardCell c : board.getTargets()){
 				if(c.getRow() == row && c.getColumn() == column){
-					g.setColor(Color.white);
-					g.fillRect(column*BOX_DIMENSION, row*BOX_DIMENSION, BOX_DIMENSION, BOX_DIMENSION);			
+					if (isSelected) {
+						g.setColor(Color.black);
+					}
+					else {
+						g.setColor(Color.white);	
+					}
+					g.fillRect(column*BOX_DIMENSION, row*BOX_DIMENSION, BOX_DIMENSION, BOX_DIMENSION);	
 				}
 
 			}
@@ -190,6 +196,14 @@ public class BoardCell {
 
 	public int getColumn() {
 		return column;
+	}
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 
 
