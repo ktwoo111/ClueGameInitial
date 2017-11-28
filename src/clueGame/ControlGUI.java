@@ -33,17 +33,12 @@ public class ControlGUI extends JPanel {
 	
 	public ControlGUI()  {
 
-		
-	
 		setLayout(new GridLayout(2,1));
 		setSize(700,200);
 		add(createTopPanel(),BorderLayout.CENTER);
 		add(createBottomPanel(),BorderLayout.CENTER);
 		repaint();
-		
-		
-
-		
+				
 	}
 	
 
@@ -125,6 +120,12 @@ public class ControlGUI extends JPanel {
 		JLabel nameLabelGuess = new JLabel("Guess");
 		guessField = new JTextField(30);
 		guessField.setEditable(false);
+		
+		if(board.isSubmitted()) {
+			guessField.setText(board.getSuggestion().person + " " + board.getSuggestion().room + " " + board.getSuggestion().weapon);
+			repaint();
+		}
+		
 		bottomPanelGuess.add(nameLabelGuess);
 		bottomPanelGuess.add(guessField);
 		bottomPanelGuess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
@@ -132,6 +133,12 @@ public class ControlGUI extends JPanel {
 		JLabel nameLabelGuessResult = new JLabel("Response");
 		guessResultField = new JTextField(10);
 		guessResultField.setEditable(false);
+		
+		if(board.isSubmitted()) {
+			guessResultField.setText(board.handleSuggestion(board.getSuggestion(), board.getPlayers().get(0), board.getPlayers()).getCardName());
+			repaint();
+		}
+		
 		bottomPanelGuessResult.add(nameLabelGuessResult);
 		bottomPanelGuessResult.add(guessResultField);
 		bottomPanelGuessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));

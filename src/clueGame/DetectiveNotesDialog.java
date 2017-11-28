@@ -20,6 +20,7 @@ public class DetectiveNotesDialog extends JDialog {
 
 	private static Board board = Board.getInstance();
 	private JComboBox<String> personCombo, roomCombo, weaponCombo;
+
 	public DetectiveNotesDialog(){
 		setTitle("Detective Notes");
 		setSize(500,600);
@@ -113,11 +114,40 @@ public class DetectiveNotesDialog extends JDialog {
 		weaponsGuess.setBorder(new TitledBorder (new EtchedBorder(), "Weapon Guess"));
 		weaponCombo = new JComboBox<String>();
 		for(Card c : board.getCards()){
-			weaponCombo.addItem(c.getCardName());
+			if(c.getCardType() == CardType.WEAPON){
+				weaponCombo.addItem(c.getCardName());
+			}
 		}
 		weaponCombo.addItem("Unsure");
 		weaponsGuess.add(weaponCombo);
 		return weaponsGuess;
 	}
+
+	public static void main(String args[]){
+		Board board = Board.getInstance();
+		board.setConfigFiles("Our_ClueLayout.csv", "Our_ClueLegend.txt");
+		board.initialize();
+		/*
+		JFrame test = new JFrame();
+
+		test.setResizable(false);
+		test.setTitle("Clue Game");
+		test.setSize(850,900); // width, height
+
+		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 */
+
+		DetectiveNotesDialog notes = new DetectiveNotesDialog();
+		notes.setVisible(true);
+
+
+
+
+		/*
+		test.setVisible(true);
+		test.repaint();
+		 */
+	}
+
 
 }

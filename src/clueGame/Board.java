@@ -43,6 +43,8 @@ public class Board {
 	private ArrayList<Card> cards; // array list of all the cards
 	private Solution theAnswer;
 	private boolean targetSelected = false;
+	private boolean isSubmitted = false;
+	private Solution currentSuggestion;
 
 
 
@@ -491,6 +493,13 @@ public class Board {
 
 	}
 
+	public void setSuggestion(String person, String room, String weapon){
+		 currentSuggestion = new Solution(person, room, weapon);
+	}
+	public Solution getSuggestion(){
+		 return currentSuggestion;
+	}
+	
 	
 	public void makeMove(){ // for the players
 		
@@ -500,6 +509,13 @@ public class Board {
 
 		if(currentPlayer == 0){
 			players.get(currentPlayer).changeCurrentLocation(selectedLocation.getRow(),selectedLocation.getColumn());
+			if(getCellAt(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn()).isRoom()) {
+				MakeGuess makeGuess = new MakeGuess();
+				makeGuess.setVisible(true);
+				if(isSubmitted) {
+					isSubmitted = false;
+				}
+			}
 			targetSelected = false;
 
 		}
@@ -558,6 +574,12 @@ public class Board {
 	}
 	public void setTargetSelected(boolean targetSelected) {
 		this.targetSelected = targetSelected;
+	}
+	public boolean isSubmitted() {
+		return isSubmitted;
+	}
+	public void setSubmitted(boolean isSubmitted) {
+		this.isSubmitted = isSubmitted;
 	}
 	
 	
