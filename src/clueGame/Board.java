@@ -44,7 +44,8 @@ public class Board {
 	private Solution theAnswer;
 	private boolean targetSelected = false;
 	private boolean isSubmitted = false;
-	private Solution currentSuggestion;
+	private Solution currentSuggestion = new Solution("NULL","NULL","NULL");
+	private boolean firstTime = true;
 
 
 
@@ -493,29 +494,22 @@ public class Board {
 
 	}
 
-	public void setSuggestion(String person, String room, String weapon){
-		 currentSuggestion = new Solution(person, room, weapon);
+	public void setCurrentSuggestion(Solution suggestion){
+		 currentSuggestion = suggestion;
 	}
-	public Solution getSuggestion(){
+	public Solution getCurrentSuggestion(){
 		 return currentSuggestion;
 	}
 	
 	
-	public void makeMove(){ // for the players
-		
-		//reassigns values for targets Array list
+	public void makeMove(){ // for the players				
 		rollDie();
-		
+		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
 
+		System.out.println("Current Player: " + currentPlayer);
+		
 		if(currentPlayer == 0){
 			players.get(currentPlayer).changeCurrentLocation(selectedLocation.getRow(),selectedLocation.getColumn());
-			if(getCellAt(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn()).isRoom()) {
-				MakeGuess makeGuess = new MakeGuess();
-				makeGuess.setVisible(true);
-				if(isSubmitted) {
-					isSubmitted = false;
-				}
-			}
 			targetSelected = false;
 
 		}
@@ -525,16 +519,8 @@ public class Board {
 			//assigns new current location with destination's row and columns
 			players.get(currentPlayer).changeCurrentLocation(destination.getRow(),destination.getColumn());
 		}
-
-		//TODO: pick location from calculated location
-		//TODO: Move to that location
-		//TODO: handle suggestions and accusations
-
-		currentPlayer++;
-		if(currentPlayer == players.size()){
-			currentPlayer = 0;
-		}
-		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
+		
+		
 
 	}
 	
@@ -556,6 +542,13 @@ public class Board {
 
 	public int getCurrentPlayer() {
 		return currentPlayer;
+	}
+	public void increaseCurrentPlayer() {
+		currentPlayer++;
+		if(currentPlayer == players.size()){
+			currentPlayer = 0;
+		}
+		
 	}
 	public int getDieVal() {
 		return dieVal;

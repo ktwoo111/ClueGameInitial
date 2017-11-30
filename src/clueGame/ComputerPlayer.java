@@ -59,7 +59,7 @@ public class ComputerPlayer extends Player {
 	 * @param currentRoom get currentRoom by getting getCellAt for player's location, get initial, and then get room string value by accessing legend
 	 * @return
 	 */
-
+	@Override
 	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){ 	
 
 

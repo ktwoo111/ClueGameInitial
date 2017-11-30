@@ -26,6 +26,13 @@ public class Player {
 
 	
 	
+	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){
+		return null;
+		
+		
+	}
+	
+	
 	private Color convertColor(String strColor){
 		Color color;
 		try{

@@ -101,7 +101,7 @@ public class MakeGuess extends JDialog {
 
 		class Submit implements ActionListener{
 			public void actionPerformed(ActionEvent e){
-				board.setSuggestion(personCombo.getSelectedItem().toString(), currentRoom.getText(), weaponCombo.getSelectedItem().toString());
+			//	board.setSuggestion(personCombo.getSelectedItem().toString(), currentRoom.getText(), weaponCombo.getSelectedItem().toString());
 				board.setSubmitted(true);
 				dispose();
 			}
