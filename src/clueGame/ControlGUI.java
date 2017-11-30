@@ -5,6 +5,7 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -176,7 +177,7 @@ public class ControlGUI extends JPanel {
 		guess.setResizable(false);
 		guess.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		guess.setLayout(new GridLayout(4,1));
-
+		guess.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
 		guess.add(roomGuess());
 		guess.add(personGuess());
