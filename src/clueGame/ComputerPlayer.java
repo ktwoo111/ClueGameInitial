@@ -62,8 +62,10 @@ public class ComputerPlayer extends Player {
 	@Override
 	public Solution createSuggestion(ArrayList<Card> cards, String currentRoom){ 	
 
-
-		ArrayList<Card> remainingCards = cards;
+		ArrayList<Card> remainingCards = new ArrayList<Card>();		
+		for(Card c: cards) {
+			remainingCards.add(c);
+		}
 
 		remainingCards.removeAll(super.getMyCards());
 		remainingCards.removeAll(super.getSeenCards());
