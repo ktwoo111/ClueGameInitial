@@ -86,9 +86,6 @@ public class ControlGUI extends JPanel {
 				}
 				else {
 					board.makeMove();
-					whoseTurnText.setText(board.getPlayers().get(board.getCurrentPlayer()).getPlayerName());
-					dieField.setText(Integer.toString(board.getDieVal()));
-
 					//Make makeGuess Dialog pop up if character is in room, otherwise computer make the suggestion
 					if(board.getCellAt(board.getPlayers().get(board.getCurrentPlayer()).getRow(),board.getPlayers().get(board.getCurrentPlayer()).getColumn()).isRoom()) {
 						if(board.getCurrentPlayer() == 0) {
@@ -108,11 +105,17 @@ public class ControlGUI extends JPanel {
 							guessResultField.setText(board.handleSuggestion(board.getCurrentSuggestion(), board.getPlayers().get(board.getCurrentPlayer()), board.getPlayers()).getCardName());
 						}
 					}
-					repaint();
 					if (board.getCurrentPlayer() == 0) {
 						board.getCellAt(board.getSelectedLocation().getRow(),board.getSelectedLocation().getColumn()).setSelected(false);
 					}
+					System.out.println("Current Player: " + board.getCurrentPlayer());
 					board.increaseCurrentPlayer(); // go to next player
+					
+					board.rollDie();
+					board.calcTargets(board.getPlayers().get(board.getCurrentPlayer()).getRow(),board.getPlayers().get(board.getCurrentPlayer()).getColumn(),board.getDieVal());
+					whoseTurnText.setText(board.getPlayers().get(board.getCurrentPlayer()).getPlayerName());
+					dieField.setText(Integer.toString(board.getDieVal()));
+					repaint();
 				}
 			}
 

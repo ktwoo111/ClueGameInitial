@@ -488,7 +488,7 @@ public class Board {
 	}
 
 
-	private void rollDie(){
+	public void rollDie(){
 		Random rand = new Random();
 		dieVal = rand.nextInt(6)+1;
 
@@ -503,11 +503,6 @@ public class Board {
 	
 	
 	public void makeMove(){ // for the players				
-		rollDie();
-		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
-
-		System.out.println("Current Player: " + currentPlayer);
-		
 		if(currentPlayer == 0){
 			players.get(currentPlayer).changeCurrentLocation(selectedLocation.getRow(),selectedLocation.getColumn());
 			targetSelected = false;
@@ -519,8 +514,6 @@ public class Board {
 			//assigns new current location with destination's row and columns
 			players.get(currentPlayer).changeCurrentLocation(destination.getRow(),destination.getColumn());
 		}
-		
-		
 
 	}
 	
