@@ -52,7 +52,11 @@ public class Player {
 		
 	}
 	
-
+	public void updateSeenCards(Card seen) {
+		seenCards.add(seen);
+		
+	}
+	
 	public Card disproveSuggestion(Solution suggestion){
 		
 		ArrayList<Card> matchingCards = new ArrayList<Card>();

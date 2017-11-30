@@ -91,16 +91,16 @@ public class Board {
 
 		loadCardConfigFile("Weapons.txt");
 		shuffleAndDealCards();
-		setSolution();
+		setAnswer();
 		calcAdjacencies();
 
-		//rolling die and calctarget to just to start off the game
+		//rolling die and calcTarget to just to start off the game
 		rollDie();
 		calcTargets(players.get(currentPlayer).getRow(),players.get(currentPlayer).getColumn(),dieVal);
 
 	}
-	private void setSolution() {
-		// TODO MAYBE NEED THIS OR NOT
+	private void setAnswer() {
+		//TODO: THIS IS WHERE WE WILL MAKE THE ACTUAL solution ANSWER
 
 	}
 	/**
@@ -424,6 +424,13 @@ public class Board {
 	public void selectAnswer(){
 		//TODO
 
+	}
+	
+	public void updateSeenCardForAllPlayers(Card seen) {
+		for (Player p: players) {
+			p.updateSeenCards(seen);			
+		}
+		
 	}
 	/**
 	 * 

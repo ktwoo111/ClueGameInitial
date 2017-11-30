@@ -90,9 +90,9 @@ public class ControlGUI extends JPanel {
 					//Make makeGuess Dialog pop up if character is in room, otherwise computer make the suggestion
 					if(board.getCellAt(board.getPlayers().get(board.getCurrentPlayer()).getRow(),board.getPlayers().get(board.getCurrentPlayer()).getColumn()).isRoom()) {
 						if(board.getCurrentPlayer() == 0) {
-							System.out.println("Card size: " + board.getCards().size());
+					
 							MakeGuess();
-							System.out.println("Card size: " + board.getCards().size());
+					
 							guess.setVisible(true);
 						}
 						else {
@@ -101,14 +101,19 @@ public class ControlGUI extends JPanel {
 							int col = board.getPlayers().get(board.getCurrentPlayer()).getColumn();
 							String currentRoom = board.getLegend().get(board.getCellAt(row, col).getInitial());
 							board.setCurrentSuggestion(board.getPlayers().get(board.getCurrentPlayer()).createSuggestion(board.getCards(), currentRoom));
-							System.out.println("Card size after set currentsuggestion: " + board.getCards().size());
-							//System.out.println(board.getCurrentSuggestion());
+						
+							
 							//set guessField
 							guessField.setText(board.getCurrentSuggestion().person + " " + board.getCurrentSuggestion().room + " " + board.getCurrentSuggestion().weapon);
-							System.out.println("Card size after guessField.setTExt: " + board.getCards().size());
+
+							//this is the card that will be shown after handling suggestion
+							Card display = board.handleSuggestion(board.getCurrentSuggestion(), board.getPlayers().get(board.getCurrentPlayer()), board.getPlayers());
+							//update seenCards for all players
+							board.updateSeenCardForAllPlayers(display);
 							//set guessResultField
-							guessResultField.setText(board.handleSuggestion(board.getCurrentSuggestion(), board.getPlayers().get(board.getCurrentPlayer()), board.getPlayers()).getCardName());
-							System.out.println("Card size after ResultField.setText: " + board.getCards().size());
+							guessResultField.setText(display.getCardName());
+							
+							
 						}
 					}
 					if (board.getCurrentPlayer() == 0) {
@@ -261,10 +266,14 @@ public class ControlGUI extends JPanel {
 				
 				//set guessField
 				guessField.setText(board.getCurrentSuggestion().person + " " + board.getCurrentSuggestion().room + " " + board.getCurrentSuggestion().weapon);
-				System.out.println("Card size after guessField.setTExt: " + board.getCards().size());
+			
+				//below is the card that will be shown after handling suggestion
+				Card display = board.handleSuggestion(board.getCurrentSuggestion(), board.getPlayers().get(0), board.getPlayers());
+				//update seenCards for all players
+				board.updateSeenCardForAllPlayers(display);
 				//set guessResultField
-				guessResultField.setText(board.handleSuggestion(board.getCurrentSuggestion(), board.getPlayers().get(0), board.getPlayers()).getCardName());
-				System.out.println("Card size after guessResultField.setTExt: " + board.getCards().size());
+				guessResultField.setText(display.getCardName());
+		
 				guess.dispose();
 				repaint();
 			}
