@@ -94,7 +94,6 @@ public class Board {
 
 		loadCardConfigFile("Weapons.txt");
 		setAnswer();
-		System.out.println(theAnswer.person + theAnswer.room + theAnswer.weapon);
 		shuffleAndDealCards();
 		calcAdjacencies();
 
@@ -340,7 +339,6 @@ public class Board {
 			deckWithOutSolutionCards.add(c);
 			}
 		}
-		System.out.println(deckWithOutSolutionCards.size());
 
 		double numCards = deckWithOutSolutionCards.size();
 		double numPlayers = players.size();
