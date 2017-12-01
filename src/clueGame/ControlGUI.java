@@ -347,8 +347,13 @@ public class ControlGUI extends JPanel {
 				//update seenCards for all players
 				board.updateSeenCardForAllPlayers(display);
 				//set guessResultField
-				guessResultField.setText(display.getCardName());
-
+				if (display == null) {
+					guessResultField.setText("Not Disproven");
+					board.setLastSuggestionDisproven(false);
+				}
+				else {
+					guessResultField.setText(display.getCardName());
+				}
 				guess.dispose();
 				repaint();
 			}

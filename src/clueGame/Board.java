@@ -94,6 +94,7 @@ public class Board {
 
 		loadCardConfigFile("Weapons.txt");
 		setAnswer();
+		System.out.println(theAnswer.person + theAnswer.room + theAnswer.weapon);
 		shuffleAndDealCards();
 		calcAdjacencies();
 
