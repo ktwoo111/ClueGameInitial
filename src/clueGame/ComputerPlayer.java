@@ -14,7 +14,7 @@ import clueGame.Card.CardType;
 
 public class ComputerPlayer extends Player {
 	private char previousLocation;
-
+	
 	public ComputerPlayer(String playerName, int row, int column, String color) {
 		super(playerName,row,column,color);
 		previousLocation = 'Z'; // just a random non room character
@@ -48,8 +48,7 @@ public class ComputerPlayer extends Player {
 		return chosenTarget;
 	}
 	public void makeAccusation(){
-
-		//TODO
+		
 	}
 
 

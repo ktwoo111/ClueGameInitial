@@ -13,7 +13,9 @@ public class Player {
 	private Color color;
 	private ArrayList<Card> myCards;
 	private ArrayList<Card> seenCards;
-
+	
+	public void makeAccusation() {
+	}
 
 	public Player(String playerName, int row, int column, String color) {
 		this.playerName = playerName;

@@ -21,6 +21,7 @@ import java.util.TreeSet;
 import javax.swing.JPanel;
 
 import clueGame.BoardCell;
+import clueGame.Card.CardType;
 
 public class Board {
 	/**
@@ -46,6 +47,8 @@ public class Board {
 	private boolean isSubmitted = false;
 	private Solution currentSuggestion = new Solution("NULL","NULL","NULL");
 	private boolean firstTime = true;
+	private Solution currentAccusation = new Solution("NULL","NULL","NULL");
+	private boolean lastSuggestionDisproven = true;
 
 
 
@@ -64,7 +67,7 @@ public class Board {
 	 * @throws BadConfigFormatException 
 	 */
 	public void initialize() {
-		theAnswer = new Solution("Matt", "Dining Room", "axe");
+		
 		legend = new HashMap<Character,String>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 
@@ -90,8 +93,8 @@ public class Board {
 		}
 
 		loadCardConfigFile("Weapons.txt");
-		shuffleAndDealCards();
 		setAnswer();
+		shuffleAndDealCards();
 		calcAdjacencies();
 
 		//rolling die and calcTarget to just to start off the game
@@ -100,7 +103,22 @@ public class Board {
 
 	}
 	private void setAnswer() {
-		//TODO: THIS IS WHERE WE WILL MAKE THE ACTUAL solution ANSWER
+		Card room = new Card("null", "weapon");
+		Card weapon = new Card("null", "person");
+		Card person = new Card("null", "room");
+		Random rand = new Random();
+
+		while (room.getCardType() != CardType.ROOM) {
+			room = cards.get(rand.nextInt(cards.size()));
+		}
+		while (weapon.getCardType() != CardType.WEAPON) {
+			weapon = cards.get(rand.nextInt(cards.size()));
+		}
+		while (person.getCardType() != CardType.PERSON) {
+			person = cards.get(rand.nextInt(cards.size()));
+		}
+		theAnswer = new Solution(person.getCardName(),room.getCardName(),weapon.getCardName());
+		
 
 	}
 	/**
@@ -484,7 +502,6 @@ public class Board {
 	 * @return
 	 */
 	public boolean checkAccusation(Solution accusation){
-
 		if(accusation.equals(theAnswer)){
 			return true;
 		}
@@ -573,6 +590,18 @@ public class Board {
 	}
 	public void setSubmitted(boolean isSubmitted) {
 		this.isSubmitted = isSubmitted;
+	}
+	public Solution getCurrentAccusation() {
+		return currentAccusation;
+	}
+	public void setCurrentAccusation(Solution currentAccusation) {
+		this.currentAccusation = currentAccusation;
+	}
+	public boolean isLastSuggestionDisproven() {
+		return lastSuggestionDisproven;
+	}
+	public void setLastSuggestionDisproven(boolean lastSuggestionDisproven) {
+		this.lastSuggestionDisproven = lastSuggestionDisproven;
 	}
 	
 	
