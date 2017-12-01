@@ -106,7 +106,7 @@ public class gameSetupTests {
 		for(Player p : board.getPlayers()) {
 			counter += p.getMyCards().size();
 		}
-		assertEquals(counter, board.getCards().size());
+		assertEquals(counter, board.getCards().size()-3);
 		
 		//All players have ROUGHLY the same number of cards
 		double numCards = board.getCards().size();

@@ -332,8 +332,16 @@ public class Board {
 	private void shuffleAndDealCards() {
 		long seed = System.nanoTime();
 		Collections.shuffle(cards, new Random(seed));
+		
+		ArrayList<Card> deckWithOutSolutionCards = new ArrayList<Card>();
+		for (Card c : cards) {
+			if(c.getCardName() != theAnswer.person && c.getCardName() != theAnswer.room && c.getCardName() != theAnswer.weapon) {
+			deckWithOutSolutionCards.add(c);
+			}
+		}
+		System.out.println(deckWithOutSolutionCards.size());
 
-		double numCards = cards.size();
+		double numCards = deckWithOutSolutionCards.size();
 		double numPlayers = players.size();
 		int mostNum = (int)Math.floor(numCards/numPlayers);
 		int lastNum = (int)Math.ceil(numCards/numPlayers);
@@ -343,14 +351,14 @@ public class Board {
 		for(int i = 0; i < players.size(); i++){
 			if(i  < numCards%numPlayers){
 				for(int j = 0; j < lastNum; j++){		
-					players.get(i).getMyCards().add(cards.get(counter));
+					players.get(i).getMyCards().add(deckWithOutSolutionCards.get(counter));
 					counter++;				
 				}
 			}
 			else {
 				for(int j = 0; j < mostNum; j++){
 
-					players.get(i).getMyCards().add(cards.get(counter));
+					players.get(i).getMyCards().add(deckWithOutSolutionCards.get(counter));
 					counter++;			
 				}
 			}
